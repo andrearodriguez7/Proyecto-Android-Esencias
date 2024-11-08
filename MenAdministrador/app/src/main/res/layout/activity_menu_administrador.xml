@@ -86,9 +86,10 @@
             android:layout_height="80dp"
             android:layout_weight="1"
             android:background="@color/verdeadministrador"
-            android:padding="18dp"
+            android:padding="8dp"
+            android:paddingLeft="10dp"
             android:scaleType="fitCenter"
-            tools:srcCompat="@drawable/volver" />
+            android:src="@drawable/flechavolver" />
 
         <TextView
             android:id="@+id/Administrador"
@@ -98,7 +99,7 @@
             android:background="@color/verdeadministrador"
             android:fontFamily="@font/baloo_thambi_2"
             android:gravity="center"
-            android:paddingRight="40dp"
+            android:paddingRight="30dp"
             android:text="Administrador"
             android:textAlignment="center"
             android:textSize="30sp" />
@@ -181,6 +182,49 @@
 
         <ImageView
             android:id="@+id/flechausuario"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:background="@color/verdepastel"
+            android:padding="27dp"
+            app:srcCompat="@drawable/entrar"
+            tools:srcCompat="@drawable/entrar" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/Contenedorapp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.55">
+
+        <TextView
+            android:id="@+id/App"
+            android:layout_width="339dp"
+            android:layout_height="70dp"
+            android:background="@color/verdepastel"
+            android:fontFamily="@font/baloo_thambi_2"
+            android:gravity="center"
+            android:paddingLeft="50dp"
+            android:text="Ver App"
+            android:textAlignment="center"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <ImageView
+            android:id="@+id/flechaApp"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_weight="1"
