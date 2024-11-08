@@ -26,8 +26,8 @@
 
 
     <LinearLayout
-        android:id="@+id/ContenedorCursos"
-        android:layout_width="wrap_content"
+        android:id="@+id/Contenedorcursos"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -35,14 +35,12 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.34">
-
+        app:layout_constraintVertical_bias="0.338">
 
         <TextView
             android:id="@+id/Cursos"
-            android:layout_width="319dp"
+            android:layout_width="339dp"
             android:layout_height="70dp"
-            android:layout_weight="1"
             android:background="@color/verdepastel"
             android:fontFamily="@font/baloo_thambi_2"
             android:gravity="center"
@@ -58,7 +56,7 @@
             app:layout_constraintVertical_bias="0.0" />
 
         <ImageView
-            android:id="@+id/flechacurso"
+            android:id="@+id/flechacursos"
             android:layout_width="wrap_content"
             android:layout_height="70dp"
             android:layout_weight="1"
@@ -66,6 +64,8 @@
             android:padding="27dp"
             app:srcCompat="@drawable/entrar"
             tools:srcCompat="@drawable/entrar" />
+
+
     </LinearLayout>
 
     <LinearLayout
