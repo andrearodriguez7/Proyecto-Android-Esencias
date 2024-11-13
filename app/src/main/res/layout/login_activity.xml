@@ -23,8 +23,8 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
-        android:layout_width="401dp"
-        android:layout_height="682dp"
+        android:layout_width="415dp"
+        android:layout_height="684dp"
         android:background="@drawable/border_radius"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
