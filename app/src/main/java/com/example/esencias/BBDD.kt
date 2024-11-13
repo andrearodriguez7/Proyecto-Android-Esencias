@@ -9,10 +9,11 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         val tablaUsuario = """
             CREATE TABLE Usuario (
                 dni TEXT PRIMARY KEY,
-                Nombre TEXT NOT NULL,
-                Apellido1 TEXT NOT NULL,
-                Apellido2 TEXT,
-                Direccion TEXT,
+                nombre TEXT NOT NULL,
+                apellido1 TEXT NOT NULL,
+                apellido2 TEXT,
+                pass TEXT NOT NULL,
+                direccion TEXT,
                 fotoPerfil TEXT,
                 privilegios TEXT,
                 correo TEXT,
