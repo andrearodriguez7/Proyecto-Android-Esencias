@@ -22,7 +22,7 @@
         tools:context=".RegisterActivity">
 
         <ImageButton
-            android:id="@+id/button4"
+            android:id="@+id/volverButton"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:background="@drawable/flechavolver"
@@ -87,10 +87,10 @@
             android:textColor="@color/TituloLogin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintHorizontal_bias="0.13"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:layout_constraintVertical_bias="0.224" />
+            app:layout_constraintVertical_bias="1.0" />
 
         <LinearLayout
             android:id="@+id/linearLayout3"
@@ -115,6 +115,7 @@
                 android:src="@drawable/email" />
 
             <EditText
+                android:id="@+id/registerEmail"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -152,6 +153,7 @@
                 android:src="@drawable/user_icon" />
 
             <EditText
+                android:id="@+id/registerNombre"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
@@ -202,13 +204,14 @@
                 android:src="@drawable/lock" />
 
             <EditText
+                android:id="@+id/registerContrasenia"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/baloo_thambi_2"
                 android:hint="Contraseña"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:textColor="@android:color/white"
@@ -253,13 +256,14 @@
                 android:src="@drawable/lock" />
 
             <EditText
+                android:id="@+id/registerRepetirContrasenia"
                 android:layout_width="0dp"
                 android:layout_height="48dp"
                 android:layout_weight="1"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/baloo_thambi_2"
                 android:hint="Repetir contraseña"
-                android:inputType="textEmailAddress"
+                android:inputType="textPassword"
                 android:paddingStart="15dp"
                 android:paddingEnd="15dp"
                 android:textColor="@android:color/white"
@@ -268,7 +272,7 @@
 
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/registerButton"
             android:layout_width="226dp"
             android:layout_height="48dp"
             android:layout_marginTop="76dp"

@@ -1,22 +1,22 @@
 package com.example.esencias
+import android.content.ContentValues
 import android.content.Context
+import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 
 class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null, 1) {
 
     override fun onCreate(db: SQLiteDatabase) {
+
         val tablaUsuario = """
             CREATE TABLE Usuario (
-                dni TEXT PRIMARY KEY,
-                nombre TEXT NOT NULL,
-                apellido1 TEXT NOT NULL,
-                apellido2 TEXT,
+                correo TEXT PRIMARY KEY,
+                nombre TEXT NOT NULL UNIQUE,
                 pass TEXT NOT NULL,
                 direccion TEXT,
                 fotoPerfil TEXT,
                 privilegios TEXT,
-                correo TEXT,
                 tlfn TEXT
             );
         """
@@ -32,10 +32,10 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
 
         val tablaUsuario_Tarjeta = """
             CREATE TABLE Usuario_Tarjeta (
-                dni TEXT,
+                correo TEXT,
                 nCuenta TEXT,
-                PRIMARY KEY (dni, nCuenta),
-                FOREIGN KEY (dni) REFERENCES Usuario(dni),
+                PRIMARY KEY (correo, nCuenta),
+                FOREIGN KEY (correo) REFERENCES Usuario(correo),
                 FOREIGN KEY (nCuenta) REFERENCES Tarjeta(nCuenta)
             );
         """
@@ -68,11 +68,11 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         val tablaPedido = """
             CREATE TABLE Pedido (
                 idPedido INTEGER PRIMARY KEY AUTOINCREMENT,
-                dni TEXT,
+                correo TEXT,
                 estado TEXT,
                 fecha TEXT,
                 importe REAL,
-                FOREIGN KEY (dni) REFERENCES Usuario(dni)
+                FOREIGN KEY (correo) REFERENCES Usuario(correo)
             );
         """
 
@@ -94,5 +94,35 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         db.execSQL("DROP TABLE IF EXISTS Cesta_Producto")
         db.execSQL("DROP TABLE IF EXISTS Pedido")
         onCreate(db)
+    }
+
+    override fun onOpen(db: SQLiteDatabase) {
+        super.onOpen(db)
+        db.execSQL("PRAGMA foreign_keys=ON;")
+    }
+
+    fun insertarUsuario(correo:String,nombre:String, pass:String, direccion:String?,fotoPerfil:String?, privilegios:String?, tlfn:String?):Int{
+
+        val db=this.writableDatabase
+        val values= ContentValues().apply {
+            put("correo",correo)
+            put("nombre",nombre)
+            put("pass",pass)
+            put("direccion",direccion)
+            put("fotoPerfil",fotoPerfil)
+            put("privilegios",privilegios)
+            put("tlfn",tlfn)
+        }
+        try{
+            db.insertOrThrow("usuario",null,values)
+        }catch (e:SQLiteConstraintException){
+
+            if(e.message?.contains("UNIQUE constraint failed: Usuario.correo")==true) return 1
+            if(e.message?.contains("UNIQUE constraint failed: Usuario.nombre")==true) return 2
+
+        }finally{
+            db.close()
+        }
+        return 0
     }
 }

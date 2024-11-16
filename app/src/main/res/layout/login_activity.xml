@@ -47,7 +47,7 @@
             app:layout_constraintVertical_bias="0.023" />
 
         <TextView
-            android:id="@+id/textView8"
+            android:id="@+id/registro"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="@font/baloo_thambi_2"
@@ -104,7 +104,7 @@
             app:layout_constraintVertical_bias="0.054" />
 
         <Button
-            android:id="@+id/button"
+            android:id="@+id/invitadoButton"
             android:layout_width="226dp"
             android:layout_height="48dp"
             android:layout_marginTop="76dp"
