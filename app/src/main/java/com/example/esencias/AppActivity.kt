@@ -18,12 +18,16 @@ class AppActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-
+        // se carga el fragment de inicio al empezar la actividad
         cargarFragment(savedInstanceState,Inicio())
+
+        // declaracion de los botones
 
         val botonCesta: ImageButton=findViewById(R.id.botonCesta)
         val botonInicio: ImageButton=findViewById(R.id.botonInicio)
         val botonAjustes: ImageButton=findViewById(R.id.botonAjustes)
+
+        // click listeners para viajar entre fragmentos
 
         botonCesta.setOnClickListener{
             cargarFragment(savedInstanceState, CestaFragment())
@@ -37,6 +41,8 @@ class AppActivity : AppCompatActivity() {
             cargarFragment(savedInstanceState,SettingsFragment())
         }
     }
+
+    // metodo para mostrar fragments
 
     private fun cargarFragment(savedInstanceState: Bundle?, fragment: Fragment) {
         if (savedInstanceState == null) {

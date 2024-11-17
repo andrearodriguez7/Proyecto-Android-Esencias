@@ -24,6 +24,8 @@ class RegisterActivity : AppCompatActivity() {
         }
 
         val volver: ImageButton = findViewById(R.id.volverButton)
+        val registro: Button = findViewById(R.id.registerButton)
+
         volver.setOnClickListener {
             val intent: Intent = Intent(
                 this@RegisterActivity,
@@ -31,8 +33,6 @@ class RegisterActivity : AppCompatActivity() {
             )
             startActivity(intent)
         }
-
-        val registro: Button = findViewById(R.id.registerButton)
 
         registro.setOnClickListener {
             val nombre = findViewById<EditText>(R.id.registerNombre).text.toString()
@@ -52,7 +52,5 @@ class RegisterActivity : AppCompatActivity() {
                 2 -> Toast.makeText(this, "Este usuario ya está registrado.", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
-
 }

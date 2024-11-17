@@ -100,7 +100,13 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         super.onOpen(db)
         db.execSQL("PRAGMA foreign_keys=ON;")
     }
-
+    /**
+     * Intenta la insercion de un usuario,
+     * Devuelve un Int:
+     *  0: Insercion correcta
+     *  1: Correo duplicado en bbdd
+     *  2: Nombre duplicado en bbdd
+     * */
     fun insertarUsuario(correo:String,nombre:String, pass:String, direccion:String?,fotoPerfil:String?, privilegios:String?, tlfn:String?):Int{
 
         val db=this.writableDatabase
@@ -125,7 +131,10 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         }
         return 0
     }
-
+    /**
+     * Busca un usuario por su nombre o correo.
+     * Devuelve el nombre encontrado en BBDD, si no se encuentra, devolverá null.
+     * */
     fun encontrarUsuario(nombre:String?):String?{
         val db = this.readableDatabase
         val query = "SELECT nombre FROM Usuario WHERE nombre = ? OR correo = ?"
@@ -139,7 +148,12 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
 
         return ret
     }
-
+    /**
+     * Dado un nombre y una contraseña, comprueba en BBDD
+     * Devuelve:
+     *  True: la contraseña es correcta
+     *  False: la contraseña es incorrecta
+     * */
     fun verificarUsuario(nombre: String, pass: String):Boolean{
 
         val db=this.readableDatabase
