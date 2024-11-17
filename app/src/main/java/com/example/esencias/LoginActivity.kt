@@ -4,7 +4,9 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -29,13 +31,35 @@ class LoginActivity : AppCompatActivity() {
 
         val registro: TextView = findViewById(R.id.registro)
 
-        registro.setOnClickListener {
+        val inicio: Button = findViewById(R.id.entrarButton)
 
-            val intent: Intent = Intent(
+        registro.setOnClickListener {
+            val intent = Intent(
                 this@LoginActivity,
                 RegisterActivity::class.java
             )
             startActivity(intent)
         }
+
+        inicio.setOnClickListener{
+            var nombre:String?=findViewById<EditText>(R.id.loginEmail).text.toString()
+            val pass=findViewById<EditText>(R.id.loginPass).text.toString()
+            val bd=BBDD(this)
+            nombre=bd.encontrarUsuario(nombre)
+            if(nombre!=null){
+                if(bd.verificarUsuario(nombre,pass)){
+                    val intent = Intent(
+                        this@LoginActivity,
+                        AppActivity::class.java
+                    )
+                    startActivity(intent)
+                }else{
+                    Toast.makeText(this,"Contraseña incorrecta...",Toast.LENGTH_LONG).show()
+                }
+            }else{
+                Toast.makeText(this,"Usuario no encontrado",Toast.LENGTH_LONG).show()
+            }
+        }
+
     }
 }

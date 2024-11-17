@@ -125,4 +125,30 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         }
         return 0
     }
+
+    fun encontrarUsuario(nombre:String?):String?{
+        val db = this.readableDatabase
+        val query = "SELECT nombre FROM Usuario WHERE nombre = ? OR correo = ?"
+        val cursor = db.rawQuery(query, arrayOf(nombre,nombre))
+        var ret:String?=null
+
+        if(cursor.moveToFirst()) ret=cursor.getString(0)
+
+        cursor.close()
+        db.close()
+
+        return ret
+    }
+
+    fun verificarUsuario(nombre: String, pass: String):Boolean{
+
+        val db=this.readableDatabase
+        val query="SELECT nombre, pass FROM Usuario WHERE nombre = ?"
+        val cursor = db.rawQuery(query, arrayOf(nombre))
+        var ret=false
+        if(cursor.moveToFirst()) if(cursor.getString(1) == pass) ret=true
+        db.close()
+        cursor.close()
+        return ret
+    }
 }
