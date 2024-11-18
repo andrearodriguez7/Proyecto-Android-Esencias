@@ -37,14 +37,15 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:fontFamily="@font/baloo_thambi_2"
-            android:text="INICIAR SESION"
+            android:letterSpacing="0.2"
+            android:text="INICIAR SESIÓN"
             android:textColor="@color/TituloLogin"
             android:textSize="24sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.023" />
+            app:layout_constraintVertical_bias="0.08" />
 
         <TextView
             android:id="@+id/textView5"
@@ -53,31 +54,32 @@
             android:fontFamily="@font/baloo_thambi_2"
             android:text="Usuario o correo electrónico"
             android:textColor="@color/TituloLogin"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.178"
+            app:layout_constraintHorizontal_bias="0.163"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:layout_constraintVertical_bias="0.04" />
+            app:layout_constraintVertical_bias="0.05" />
 
         <Button
             android:id="@+id/entrarButton"
-            android:layout_width="192dp"
+            android:layout_width="150dp"
             android:layout_height="48dp"
-            android:layout_marginBottom="328dp"
             android:backgroundTint="@color/TextBoxLogin"
             android:fontFamily="@font/baloo_thambi_2"
             android:text="Entrar"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-            app:layout_constraintVertical_bias="0.318" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.561" />
 
         <Button
             android:id="@+id/button3"
-            android:layout_width="260dp"
+            android:layout_width="200dp"
             android:layout_height="48dp"
             android:backgroundTint="@color/white"
             android:elevation="6dp"
@@ -86,39 +88,42 @@
             android:textColor="@color/black"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/entrarButton"
-            app:layout_constraintVertical_bias="0.054" />
+            app:layout_constraintVertical_bias="0.173" />
 
         <Button
             android:id="@+id/invitadoButton"
-            android:layout_width="226dp"
+            android:layout_width="150dp"
             android:layout_height="48dp"
             android:layout_marginTop="76dp"
             android:backgroundTint="@color/TextBoxLogin"
             android:fontFamily="@font/baloo_thambi_2"
             android:text="Invitado"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
+            app:layout_constraintHorizontal_bias="0.492"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.617" />
+            app:layout_constraintVertical_bias="0.85" />
 
         <TextView
             android:id="@+id/textView4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginBottom="472dp"
+            android:layout_marginBottom="428dp"
             android:fontFamily="@font/baloo_thambi_2"
             android:text="Contraseña"
             android:textColor="@color/TituloLogin"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintHorizontal_bias="0.115"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:layout_constraintVertical_bias="0.224" />
+            app:layout_constraintTop_toBottomOf=""
+            app:layout_constraintVertical_bias="1.0" />
 
         <LinearLayout
             android:id="@+id/linearLayout3"
@@ -134,7 +139,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:layout_constraintVertical_bias="0.08">
+            app:layout_constraintVertical_bias="0.157">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -169,10 +174,9 @@
             android:paddingEnd="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.546"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView5"
-            app:layout_constraintVertical_bias="0.019">
+            app:layout_constraintVertical_bias="0.048">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -207,7 +211,7 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.581" />
+            app:layout_constraintVertical_bias="0.767" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
