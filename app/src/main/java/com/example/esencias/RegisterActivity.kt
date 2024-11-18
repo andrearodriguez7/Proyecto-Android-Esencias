@@ -27,7 +27,7 @@ class RegisterActivity : AppCompatActivity() {
         val registro: Button = findViewById(R.id.registerButton)
 
         volver.setOnClickListener {
-            val intent: Intent = Intent(
+            val intent= Intent(
                 this@RegisterActivity,
                 LoginActivity::class.java
             )

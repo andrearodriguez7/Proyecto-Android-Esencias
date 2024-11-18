@@ -57,13 +57,6 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this,"Usuario no encontrado",Toast.LENGTH_LONG).show()
             }
         }
-
-    }
-
-    private fun comprobarCredenciales(){
-
-
-
     }
 
     private fun <T : Activity> abrirActivity(clase: Class<T>) {
