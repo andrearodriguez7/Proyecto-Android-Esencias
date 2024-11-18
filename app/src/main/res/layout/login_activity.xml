@@ -64,18 +64,17 @@
 
         <Button
             android:id="@+id/entrarButton"
-            android:layout_width="150dp"
-            android:layout_height="48dp"
+            android:layout_width="151dp"
+            android:layout_height="47dp"
             android:backgroundTint="@color/TextBoxLogin"
             android:fontFamily="@font/baloo_thambi_2"
             android:text="Entrar"
             android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.561" />
+            app:layout_constraintVertical_bias="0.576" />
 
         <Button
             android:id="@+id/button3"
@@ -91,7 +90,7 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/entrarButton"
-            app:layout_constraintVertical_bias="0.173" />
+            app:layout_constraintVertical_bias="0.076" />
 
         <Button
             android:id="@+id/invitadoButton"
@@ -211,7 +210,7 @@
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.767" />
+            app:layout_constraintVertical_bias="0.723" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
