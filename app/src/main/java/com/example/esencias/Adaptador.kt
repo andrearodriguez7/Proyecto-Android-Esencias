@@ -35,7 +35,6 @@ class Adaptador(private val itemList: List<Vela>) : RecyclerView.Adapter<Adaptad
             .into(holder.imagen)
     }
 
-
     override fun getItemCount(): Int {
         return itemList.size
     }

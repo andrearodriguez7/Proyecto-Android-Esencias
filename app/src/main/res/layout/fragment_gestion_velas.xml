@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".GestionVelas">
+
+    <com.skydoves.expandablelayout.ExpandableLayout
+        android:id="@+id/expandableLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:expandable_duration="300"
+        app:expandable_parentLayout="@layout/insertar_velas"
+        app:expandable_secondLayout="@layout/insertar_velas_exp"
+        app:expandable_isExpanded="false"/>
+
+    <!--com.skydoves.expandablelayout.ExpandableLayout
+        android:id="@+id/expandableLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:expandable_duration="300"
+        app:expandable_parentLayout="@layout/modificar_velas"
+        app:expandable_secondLayout="@layout/modificar_velas_exp"
+        app:expandable_isExpanded="false" />
+    <com.skydoves.expandablelayout.ExpandableLayout
+        android:id="@+id/expandableLayout3"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:expandable_duration="300"
+        app:expandable_parentLayout="@layout/eliminar_velas"
+        app:expandable_secondLayout="@layout/eliminar_velas_exp"
+        app:expandable_isExpanded="false" /-->
+
+</FrameLayout>

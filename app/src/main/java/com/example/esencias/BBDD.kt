@@ -112,7 +112,7 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
             (12.99, 'Vela perfumada de vainilla', 'https://i.pinimg.com/originals/66/82/d3/6682d3b1da1a78b3843b951613be0288.jpg'),
             (15.99, 'Vela con fragancia de rosa', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images'),
             (10.99, 'Vela de coco con aroma tropical', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images'),
-            (14.99, 'Vela de canela y especias', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images'),
+            (14.99, 'Vela de canela y especias', 'https://cdn.shopify.com/s/files/1/0732/7734/1971/files/R0M__VELA_RUSTIQUE_NO_AROMATICA_5.5X5.5_MARFIL_c.jpg?v=1686316324'),
             (15.99, 'Vela con fragancia de rosa', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images');
 
         """
