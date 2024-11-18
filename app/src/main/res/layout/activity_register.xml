@@ -72,10 +72,11 @@
             android:textColor="@color/TituloLogin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.114"
+            app:layout_constraintHorizontal_bias="0.119"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textView3"
-            app:layout_constraintVertical_bias="0.037" />
+            app:layout_constraintVertical_bias="0.015" />
+
 
         <TextView
             android:id="@+id/textView4"
@@ -87,7 +88,7 @@
             android:textColor="@color/TituloLogin"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.13"
+            app:layout_constraintHorizontal_bias="0.143"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
             app:layout_constraintVertical_bias="1.0" />
@@ -104,9 +105,10 @@
             android:paddingEnd="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.543"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
-            app:layout_constraintVertical_bias="0.08">
+            app:layout_constraintVertical_bias="0.126">
 
             <ImageView
                 android:id="@+id/imageView2"
@@ -141,10 +143,10 @@
             android:paddingEnd="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.546"
+            app:layout_constraintHorizontal_bias="0.543"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textView5"
-            app:layout_constraintVertical_bias="0.019">
+            app:layout_constraintVertical_bias="0.028">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -176,10 +178,10 @@
             android:textColor="@color/TituloLogin"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout4"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.121"
+            app:layout_constraintHorizontal_bias="0.126"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-            app:layout_constraintVertical_bias="0.463" />
+            app:layout_constraintVertical_bias="0.589" />
 
         <LinearLayout
             android:id="@+id/linearLayout4"
@@ -193,9 +195,10 @@
             android:paddingEnd="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.543"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-            app:layout_constraintVertical_bias="0.065">
+            app:layout_constraintVertical_bias="0.165">
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -227,10 +230,10 @@
             android:textColor="@color/TituloLogin"
             app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.139"
+            app:layout_constraintHorizontal_bias="0.131"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout4"
-            app:layout_constraintVertical_bias="0.529" />
+            app:layout_constraintVertical_bias="0.534" />
 
         <LinearLayout
             android:id="@+id/linearLayout5"
@@ -244,10 +247,10 @@
             android:paddingEnd="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.512"
+            app:layout_constraintHorizontal_bias="0.506"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/linearLayout3"
-            app:layout_constraintVertical_bias="0.258">
+            app:layout_constraintVertical_bias="0.456">
 
             <ImageView
                 android:id="@+id/imageView4"
@@ -270,21 +273,20 @@
                 android:textStyle="bold" />
         </LinearLayout>
 
-
         <Button
             android:id="@+id/registerButton"
-            android:layout_width="226dp"
+            android:layout_width="150dp"
             android:layout_height="48dp"
             android:layout_marginTop="76dp"
             android:backgroundTint="@color/TextBoxLogin"
             android:fontFamily="@font/baloo_thambi_2"
             android:text="Registrarse"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.617" />
+            app:layout_constraintVertical_bias="0.881" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
