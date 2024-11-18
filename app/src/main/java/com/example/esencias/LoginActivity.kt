@@ -31,9 +31,9 @@ class LoginActivity : AppCompatActivity() {
         // Traigo los botones del layout
         val registro: TextView = findViewById(R.id.registro)
         val inicio: Button = findViewById(R.id.entrarButton)
+        val invitado: Button= findViewById(R.id.invitadoButton)
 
         // Click listeners
-
         registro.setOnClickListener {
             abrirActivity(RegisterActivity::class.java)
         }
@@ -49,6 +49,10 @@ class LoginActivity : AppCompatActivity() {
 
             if(nombre!=null){
                 if(bd.verificarUsuario(nombre,pass)){
+                    if(nombre==""){
+                        val intent = Intent(this, AppActivity::class.java)
+                        startActivity(intent)
+                    }
                     abrirActivity(AppActivity::class.java)
                 }else{
                     Toast.makeText(this,"Contraseña incorrecta...",Toast.LENGTH_LONG).show()

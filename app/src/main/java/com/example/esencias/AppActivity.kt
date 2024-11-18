@@ -19,7 +19,7 @@ class AppActivity : AppCompatActivity() {
             insets
         }
         // se carga el fragment de inicio al empezar la actividad
-        cargarFragment(savedInstanceState,Inicio())
+        cargarFragment(savedInstanceState,GestionVelas())
 
         // declaracion de los botones
 
@@ -40,6 +40,8 @@ class AppActivity : AppCompatActivity() {
         botonAjustes.setOnClickListener{
             cargarFragment(savedInstanceState,SettingsFragment())
         }
+
+
     }
 
     // metodo para mostrar fragments

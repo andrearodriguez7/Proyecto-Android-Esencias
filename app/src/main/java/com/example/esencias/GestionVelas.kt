@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.skydoves.expandablelayout.ExpandableLayout
 
 
 private const val ARG_PARAM1 = "param1"
@@ -29,9 +30,18 @@ class GestionVelas : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
+        val view = inflater.inflate(R.layout.fragment_gestion_velas, container, false)
+        val expandableLayout = view.findViewById<ExpandableLayout>(R.id.expandableLayout)
 
+        expandableLayout.setOnClickListener {
+            if (expandableLayout.isExpanded) {
+                expandableLayout.collapse()
+            } else {
+                expandableLayout.expand()
+            }
+        }
 
-        return inflater.inflate(R.layout.fragment_gestion_velas, container, false)
+        return view
     }
 
     companion object {
