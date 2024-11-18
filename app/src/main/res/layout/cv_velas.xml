@@ -10,7 +10,7 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:padding="8dp"
-        android:background="@color/verde2">
+        android:background="@color/verdepastel">
 
         <ImageView
             android:id="@+id/imagenVela"
