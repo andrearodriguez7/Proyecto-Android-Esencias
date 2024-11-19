@@ -8,7 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.EditText
+import android.widget.ImageView
 import android.widget.Toast
+import androidx.fragment.app.replace
 import com.skydoves.expandablelayout.ExpandableLayout
 
 
@@ -39,10 +41,18 @@ class GestionVelas : Fragment() {
         val expandableLayout = view.findViewById<ExpandableLayout>(R.id.expandableLayout)
         val expandableLayout2 = view.findViewById<ExpandableLayout>(R.id.expandableLayout2)
         val expandableLayout3 = view.findViewById<ExpandableLayout>(R.id.expandableLayout3)
+        val flechaVolver = view.findViewById<ImageView>(R.id.FlechaVolverVelas)
 
         val botonInsertar= view.findViewById<Button>(R.id.InsertarButtonVelas)
         val botonEliminar= view.findViewById<Button>(R.id.EliminarButtonVelas)
         val botonModificar= view.findViewById<Button>(R.id.ModificarButtonVelas)
+
+        flechaVolver.setOnClickListener{
+            parentFragmentManager
+                .beginTransaction()
+                .replace(R.id.fragment_container_esencias,MenuAdministrador())
+                .commit()
+        }
 
         botonInsertar.setOnClickListener{
             val db=BBDD(requireContext())

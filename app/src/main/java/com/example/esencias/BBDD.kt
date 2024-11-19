@@ -132,7 +132,9 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
             (6, 'Pequeña', 'Coco');
 
         """
-
+        val insertAdmin = """
+            INSERT INTO Usuario(correo,nombre,pass,privilegios) VALUES("","","","admin")
+        """
         db.execSQL(tablaUsuario)
         db.execSQL(tablaTarjeta)
         db.execSQL(tablaUsuario_Tarjeta)
@@ -145,6 +147,7 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         db.execSQL(tablaVelas)
         db.execSQL(insertVelas)
         db.execSQL(insertVelas2)
+        db.execSQL(insertAdmin)
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -220,13 +223,17 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
      *  True: la contraseña es correcta
      *  False: la contraseña es incorrecta
      * */
-    fun verificarUsuario(nombre: String, pass: String):Boolean{
+    fun verificarUsuario(nombre: String, pass: String):Array<Boolean>{
 
         val db=this.readableDatabase
-        val query="SELECT nombre, pass FROM Usuario WHERE nombre = ?"
+        val query="SELECT nombre, pass, privilegios FROM Usuario WHERE nombre = ?"
         val cursor = db.rawQuery(query, arrayOf(nombre))
-        var ret=false
-        if(cursor.moveToFirst()) if(cursor.getString(1) == pass) ret=true
+        val ret = arrayOf(false, false)
+
+        if(cursor.moveToFirst()){
+            if(cursor.getString(1) == pass) ret[0]=true
+            if(cursor.getString(2) == "admin") ret[1]=true
+        }
         db.close()
         cursor.close()
         return ret

@@ -43,7 +43,7 @@
         <!-- Íconos de la barra inferior -->
 
         <ImageButton
-            android:id="@+id/botonInicio"
+            android:id="@+id/botonInicioAdmin"
             android:layout_width="50dp"
             android:layout_height="40dp"
             android:layout_gravity="center"
@@ -52,7 +52,16 @@
             android:contentDescription="inicio" />
 
         <ImageButton
-            android:id="@+id/botonAjustes"
+            android:id="@+id/botonAdmin"
+            android:layout_width="50dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:layout_marginRight="40dp"
+            android:background="@drawable/admin"
+            android:contentDescription="inicio"/>
+
+        <ImageButton
+            android:id="@+id/botonAjustesAdmin"
             android:layout_width="55dp"
             android:layout_height="49dp"
             android:layout_gravity="center"
@@ -61,11 +70,12 @@
             android:background="@drawable/ic_settings" />
 
         <ImageButton
-            android:id="@+id/botonCesta"
+            android:id="@+id/botonCestaAdmin"
             android:layout_width="49dp"
             android:layout_height="49dp"
             android:layout_gravity="center"
             android:contentDescription="cesta"
             android:background="@drawable/ic_cesta" />
+
     </LinearLayout>
 </LinearLayout>

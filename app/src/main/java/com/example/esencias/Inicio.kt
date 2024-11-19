@@ -35,12 +35,12 @@ class Inicio : Fragment() {
         val masVelas: ImageView = view.findViewById(R.id.Mas)
 
         masVelas.setOnClickListener {
-            mostrarVelas(view)
+            mostrarVelas()
         }
         return view
     }
 
-    private fun mostrarVelas(view: View) {
+    private fun mostrarVelas() {
         val VelasFragment=VelasFragment()
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, VelasFragment)

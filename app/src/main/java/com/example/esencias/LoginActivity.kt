@@ -3,6 +3,7 @@ package com.example.esencias
 import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
 import android.widget.TextView
@@ -37,9 +38,7 @@ class LoginActivity : AppCompatActivity() {
         registro.setOnClickListener {
             abrirActivity(RegisterActivity::class.java)
         }
-        /**
-         * TODO cargar otra activity si es administrador.
-         * */
+
         inicio.setOnClickListener{
             var nombre:String?=findViewById<EditText>(R.id.loginEmail).text.toString()
             val pass=findViewById<EditText>(R.id.loginPass).text.toString()
@@ -48,12 +47,12 @@ class LoginActivity : AppCompatActivity() {
             nombre=bd.encontrarUsuario(nombre)
 
             if(nombre!=null){
-                if(bd.verificarUsuario(nombre,pass)){
-                    if(nombre==""){
-                        val intent = Intent(this, AppActivity::class.java)
-                        startActivity(intent)
-                    }
-                    abrirActivity(AppActivity::class.java)
+                val quienEs=bd.verificarUsuario(nombre,pass)
+                if(quienEs[0]){
+                    if(quienEs[1]){
+                        abrirActivity(AppActivityAdmin::class.java)
+                    }else
+                        abrirActivity(AppActivity::class.java)
                 }else{
                     Toast.makeText(this,"Contraseña incorrecta...",Toast.LENGTH_LONG).show()
                 }

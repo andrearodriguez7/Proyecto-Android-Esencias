@@ -1,21 +1,63 @@
 package com.example.esencias
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import com.example.esencias.R
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.ImageView
+import android.widget.LinearLayout
 
-class MenuAdministrador : AppCompatActivity() {
+
+private const val ARG_PARAM1 = "param1"
+private const val ARG_PARAM2 = "param2"
+
+class MenuAdministrador : Fragment() {
+    private var param1: String? = null
+    private var param2: String? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_menu_administrador)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+        arguments?.let {
+            param1 = it.getString(ARG_PARAM1)
+            param2 = it.getString(ARG_PARAM2)
         }
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        val view=inflater.inflate(R.layout.fragment_menu_administrador2, container, false)
+        val flechaVolver:ImageView=view.findViewById(R.id.FlechaAdmin)
+        val contenedorvelas: LinearLayout =view.findViewById(R.id.Contenedorvelas)
+
+        contenedorvelas.setOnClickListener{
+            abrirFragment(GestionVelas())
+        }
+        flechaVolver.setOnClickListener{
+            val intent=Intent(requireContext(),AppActivityAdmin::class.java)
+            startActivity(intent)
+        }
+
+        return view
+    }
+
+    private fun abrirFragment(fragment: Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container_esencias,fragment)
+            .commit()
+    }
+
+    companion object {
+        @JvmStatic
+        fun newInstance(param1: String, param2: String) =
+            MenuAdministrador().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_PARAM1, param1)
+                    putString(ARG_PARAM2, param2)
+                }
+            }
     }
 }
