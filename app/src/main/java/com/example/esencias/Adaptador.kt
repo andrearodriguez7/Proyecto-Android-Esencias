@@ -14,7 +14,7 @@ import com.bumptech.glide.request.RequestOptions
 class Adaptador(private val itemList: List<Vela>) : RecyclerView.Adapter<Adaptador.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val titulo: TextView = itemView.findViewById(R.id.nombreVela)
+        val nombre: TextView = itemView.findViewById(R.id.nombreVela)
         val precio: TextView = itemView.findViewById(R.id.precioVela)
         val imagen: ImageView = itemView.findViewById(R.id.imagenVela)
     }
@@ -26,7 +26,7 @@ class Adaptador(private val itemList: List<Vela>) : RecyclerView.Adapter<Adaptad
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = itemList[position]
-        holder.titulo.text = item.titulo
+        holder.nombre.text = item.nombre
         holder.precio.text = item.precio
 
         Glide.with(holder.imagen.context)

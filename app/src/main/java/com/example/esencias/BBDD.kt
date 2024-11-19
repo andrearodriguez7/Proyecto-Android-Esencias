@@ -4,6 +4,7 @@ import android.content.Context
 import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
+import android.util.Log
 
 class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null, 1) {
 
@@ -51,8 +52,10 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         val tablaProducto = """
             CREATE TABLE Producto (
                 idProducto INTEGER PRIMARY KEY AUTOINCREMENT,
+                nombre TEXT,
                 precio REAL,
                 descripcion TEXT,
+                informacion TEXT,
                 imagen TEXT
             );
         """
@@ -92,7 +95,7 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
             idProducto INTEGER PRIMARY KEY,
             plazasDisponibles INTEGER NOT NULL,
             plazasMaximas INTEGER NOT NULL,
-            FOREIGN KEY (idProducto) REFERENCES Producto(idProducto)
+            FOREIGN KEY (idProducto) REFERENCES Producto(idProducto) ON DELETE CASCADE
         );
         """
 
@@ -101,19 +104,19 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
             idProducto INTEGER PRIMARY KEY,
             tamano TEXT NOT NULL,
             aromas TEXT NOT NULL,
-            FOREIGN KEY (idProducto) REFERENCES Producto(idProducto)
+            FOREIGN KEY (idProducto) REFERENCES Producto(idProducto) ON DELETE CASCADE
         );
         """
 
         val insertVelas = """
-            INSERT INTO Producto (precio, descripcion, imagen)
+            INSERT INTO Producto  (precio,descripcion,informacion, nombre, imagen)
             VALUES
-            (9.99, 'Vela aromática con esencia de lavanda', 'https://i.pinimg.com/originals/66/82/d3/6682d3b1da1a78b3843b951613be0288.jpg'),
-            (12.99, 'Vela perfumada de vainilla', 'https://i.pinimg.com/originals/66/82/d3/6682d3b1da1a78b3843b951613be0288.jpg'),
-            (15.99, 'Vela con fragancia de rosa', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images'),
-            (10.99, 'Vela de coco con aroma tropical', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images'),
-            (14.99, 'Vela de canela y especias', 'https://cdn.shopify.com/s/files/1/0732/7734/1971/files/R0M__VELA_RUSTIQUE_NO_AROMATICA_5.5X5.5_MARFIL_c.jpg?v=1686316324'),
-            (15.99, 'Vela con fragancia de rosa', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images');
+            (9.99,'','', 'Vela aromática con esencia de lavanda', 'https://i.pinimg.com/originals/66/82/d3/6682d3b1da1a78b3843b951613be0288.jpg'),
+            (12.99,'','', 'Vela perfumada de vainilla', 'https://i.pinimg.com/originals/66/82/d3/6682d3b1da1a78b3843b951613be0288.jpg'),
+            (15.99,'','', 'Vela con fragancia de rosa', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images'),
+            (10.99,'','', 'Vela de coco con aroma tropical', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images'),
+            (14.99,'','', 'Vela de canela y especias', 'https://cdn.shopify.com/s/files/1/0732/7734/1971/files/R0M__VELA_RUSTIQUE_NO_AROMATICA_5.5X5.5_MARFIL_c.jpg?v=1686316324'),
+            (15.99,'','', 'Vela con fragancia de rosa', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F7d%2Ff4%2F1a%2F7df41a57de92a482e68e279b07726563.png&f=1&nofb=1&ipt=2662a365556b941c61b1c75e572e002e7e40475172b6e8bdca758718da691f18&ipo=images');
 
         """
 
@@ -162,6 +165,7 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         super.onOpen(db)
         db.execSQL("PRAGMA foreign_keys=ON;")
     }
+
     /**
      * Intenta la insercion de un usuario,
      * Devuelve un Int:
@@ -233,11 +237,12 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         val db = this.readableDatabase
 
         val query = """
-            SELECT 
-                Producto.descripcion AS titulo,
+            SELECT
+                Producto.nombre AS nombre,
                 Producto.precio AS precio,
                 Producto.imagen AS imagen,
                 Producto.descripcion AS descripcion,
+                Producto.informacion AS informacion,
                 Vela.tamano AS tamano,
                 Vela.aromas AS aromas
             FROM Producto
@@ -247,21 +252,22 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         val cursor = db.rawQuery(query, null)
         if (cursor.moveToFirst()) {
             do {
-                val titulo = cursor.getString(cursor.getColumnIndexOrThrow("titulo"))
+                val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
                 val precio = cursor.getDouble(cursor.getColumnIndexOrThrow("precio")).toString()
                 val imagen = cursor.getString(cursor.getColumnIndexOrThrow("imagen"))
                 val descripcion = cursor.getString(cursor.getColumnIndexOrThrow("descripcion"))
+                val informacion = cursor.getString(cursor.getColumnIndexOrThrow("informacion"))
                 val tamano = cursor.getString(cursor.getColumnIndexOrThrow("tamano"))
                 val aromas = cursor.getString(cursor.getColumnIndexOrThrow("aromas"))
-
                 listaVelas.add(
                     Vela(
-                        titulo = titulo,
+                        nombre = nombre,
                         precio = precio,
-                        imagen = imagen,
                         descripcion = descripcion,
+                        informacion = informacion,
+                        imagen = imagen,
                         tamano = tamano,
-                        aromas = aromas
+                        aromas = aromas,
                     )
                 )
             } while (cursor.moveToNext())
@@ -269,5 +275,56 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         cursor.close()
         db.close()
         return listaVelas
+    }
+    fun insertarVela(nombre:String, precio: Double, descripcion:String, informacion:String, imagen:String,tamano:String?,aromas:String?){
+
+        val db=this.writableDatabase
+
+        val values= ContentValues().apply {
+            put("nombre",nombre)
+            put("precio",precio)
+            put("descripcion",descripcion)
+            put("informacion",informacion)
+            put("imagen",imagen)
+        }
+
+        val id=db.insertOrThrow("Producto",null,values)
+
+        val values2= ContentValues().apply {
+            put("idProducto",id)
+            put("tamano",tamano)
+            put("aromas",aromas)
+        }
+        db.insertOrThrow("Vela",null,values2)
+
+        db.close()
+    }
+    fun eliminarVela(codigo:String){
+
+        val db=this.writableDatabase
+        db.delete("Vela", "idProducto=?", arrayOf(codigo.toString()))
+
+    }
+
+    fun modificarVela(codigo:String,nombre:String, precio: Double, descripcion:String, informacion:String, imagen:String,tamano:String?, aromas:String?){
+        val db = this.writableDatabase
+
+
+        val values = ContentValues().apply {
+            if(nombre!=null && nombre!="") put("nombre",nombre)
+            if(precio!=null && precio!=-1.0) put("precio",precio)
+            if(descripcion!=null && descripcion!="") put("descripcion",descripcion)
+            if(informacion!=null && informacion!="") put("informacion",informacion)
+            if(imagen!=null && imagen!="") put("imagen",imagen)
+        }
+
+        val values2 = ContentValues().apply {
+            if(tamano!=null && tamano!="") put("tamano",tamano)
+            if(aromas!=null && aromas!="")put("aromas",aromas)
+        }
+
+        if (values.size() > 0) db.update("Producto", values, "idProducto=?", arrayOf(codigo))
+        if (values2.size() > 0) db.update("Vela", values2, "idProducto=?", arrayOf(codigo))
+
     }
 }
