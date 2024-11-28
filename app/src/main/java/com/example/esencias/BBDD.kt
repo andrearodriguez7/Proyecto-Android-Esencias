@@ -334,4 +334,58 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         if (values2.size() > 0) db.update("Vela", values2, "idProducto=?", arrayOf(codigo))
 
     }
+
+    // Métodos para insertar, modificar y eliminar curso
+
+    fun insertarCurso(nombre:String, precio: Double, descripcion:String, informacion:String, imagen:String,plazasDisponibles:Int?,plazasMaximas:Int?){
+
+        val db=this.writableDatabase
+
+        val values= ContentValues().apply {
+            put("nombre",nombre)
+            put("precio",precio)
+            put("descripcion",descripcion)
+            put("informacion",informacion)
+            put("imagen",imagen)
+        }
+
+        val id=db.insertOrThrow("Producto",null,values)
+
+        val values2= ContentValues().apply {
+            put("idProducto",id)
+            put("plazasDisponibles",plazasDisponibles)
+            put("plazasMaximas",plazasMaximas)
+        }
+        db.insertOrThrow("Curso",null,values2)
+
+        db.close()
+    }
+    fun eliminarCurso(codigo:String){
+
+        val db=this.writableDatabase
+        db.delete("Curso", "idProducto=?", arrayOf(codigo.toString()))
+
+    }
+
+    fun modificarCurso(codigo:String,nombre:String, precio: Double, descripcion:String, informacion:String, imagen:String, plazasDisponibles: Int?, plazasMaximas: Int?){
+        val db = this.writableDatabase
+
+
+        val values = ContentValues().apply {
+            if(nombre!=null && nombre!="") put("nombre",nombre)
+            if(precio!=null && precio!=-1.0) put("precio",precio)
+            if(descripcion!=null && descripcion!="") put("descripcion",descripcion)
+            if(informacion!=null && informacion!="") put("informacion",informacion)
+            if(imagen!=null && imagen!="") put("imagen",imagen)
+        }
+
+        val values2 = ContentValues().apply {
+            if(plazasDisponibles!=null && plazasDisponibles!=0) put("plazasDisponibles",plazasDisponibles)
+            if(plazasMaximas!=null && plazasMaximas!=0)put("plazasMaximas",plazasMaximas)
+        }
+
+        if (values.size() > 0) db.update("Producto", values, "idProducto=?", arrayOf(codigo))
+        if (values2.size() > 0) db.update("Curso", values2, "idProducto=?", arrayOf(codigo))
+
+    }
 }

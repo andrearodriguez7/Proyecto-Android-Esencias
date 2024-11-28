@@ -32,10 +32,16 @@ class MenuAdministrador : Fragment() {
         val view=inflater.inflate(R.layout.fragment_menu_administrador2, container, false)
         val flechaVolver:ImageView=view.findViewById(R.id.FlechaAdmin)
         val contenedorvelas: LinearLayout =view.findViewById(R.id.Contenedorvelas)
+        val contenedorcursos: LinearLayout =view.findViewById(R.id.Contenedorcursos)
 
         contenedorvelas.setOnClickListener{
             abrirFragment(GestionVelas())
         }
+
+        contenedorcursos.setOnClickListener{
+            abrirFragment(GestionCursos())
+        }
+
         flechaVolver.setOnClickListener{
             val intent=Intent(requireContext(),AppActivityAdmin::class.java)
             startActivity(intent)
