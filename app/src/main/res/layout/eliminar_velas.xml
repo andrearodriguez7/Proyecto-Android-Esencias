@@ -7,8 +7,8 @@
     <TextView
         android:id="@+id/textView"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/verdeadministrador"
+        android:layout_height="70dp"
+        android:background="@color/verdepastel"
         android:fontFamily="@font/baloo_thambi_2"
         android:textSize="25dp"
         android:gravity="center"
