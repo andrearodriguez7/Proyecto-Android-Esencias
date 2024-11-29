@@ -310,6 +310,7 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
 
         val db=this.writableDatabase
         db.delete("Vela", "idProducto=?", arrayOf(codigo.toString()))
+        db.delete("Producto", "idProducto=?", arrayOf(codigo.toString()))
 
     }
 
@@ -364,6 +365,7 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
 
         val db=this.writableDatabase
         db.delete("Curso", "idProducto=?", arrayOf(codigo.toString()))
+        db.delete("Producto", "idProducto=?", arrayOf(codigo.toString()))
 
     }
 

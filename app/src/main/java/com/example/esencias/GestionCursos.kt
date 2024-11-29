@@ -70,6 +70,7 @@ class GestionCursos : Fragment() {
             val codigo= view.findViewById<EditText>(R.id.EliminarCodigoCurso).text.toString()
             db.eliminarCurso(codigo)
         }
+
         botonModificar.setOnClickListener{
             val db=BBDD(requireContext())
             val codigoModificar= view.findViewById<EditText>(R.id.ModificarCodigoCursos).text.toString()
