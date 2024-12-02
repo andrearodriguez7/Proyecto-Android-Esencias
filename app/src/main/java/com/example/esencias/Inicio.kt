@@ -37,6 +37,13 @@ class Inicio : Fragment() {
         masVelas.setOnClickListener {
             mostrarVelas()
         }
+
+        val infoCurso: ImageView = view.findViewById(R.id.FotoCurso)
+
+        infoCurso.setOnClickListener{
+            mostrarInfoCurso()
+        }
+
         return view
     }
 
@@ -44,6 +51,15 @@ class Inicio : Fragment() {
         val VelasFragment=VelasFragment()
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, VelasFragment)
+            .commit()
+    }
+
+    // Método para mostrar la información del curso
+
+    private fun mostrarInfoCurso() {
+        val InformacionCurso=InformacionCurso()
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, InformacionCurso)
             .commit()
     }
 

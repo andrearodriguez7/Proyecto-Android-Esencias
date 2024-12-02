@@ -135,6 +135,31 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         val insertAdmin = """
             INSERT INTO Usuario(correo,nombre,pass,privilegios) VALUES("","","","admin")
         """
+
+        val insertCurso = """
+            INSERT INTO Producto  (precio,descripcion,informacion, nombre, imagen)
+            VALUES
+            (39.99,'Disfruta de nuestros cursos de creación de velas dispuestos para todo el mundo de la mano de nuestros trabajadores expertos. Además, no es necesario tener ningún tipo de conocimiento previo, tan solo tener ganas de aprender como nosotros de enseñarte. También, tendrás la oportunidad de obtener una vela creada por tí realizada con la guía de nuestros profesores.'
+            ,'Este curso  tiene una duración de 3 horas en el que se dispondrá de un profesor que explique y guíe durante el proceso de hacer una vela. Además, acompañará a cada uno para llevar a cabo su propia vela, sirviendo de una actividad artesanal aromática relajante. 
+            
+Los cursos se darán todos los martes y jueves salvo festivos y vacaciones de 17h a 20h. 
+
+Las clases tienen una capacidad de 10 personas y se registrarán por orden de llegada. 
+
+Precio: 39,99€', 'Curso: Crea tu vela', 
+            'https://www.velastierradealba.com/wp-content/uploads/2017/11/aprende-a-hacer-velas-gratis.-curso-online.jpg');
+
+        """
+
+        val insertCurso2 = """ 
+            
+            INSERT INTO Curso (idProducto, plazasDisponibles, plazasMaximas)
+            VALUES
+            (7, 10, 10);
+            
+        """
+
+
         db.execSQL(tablaUsuario)
         db.execSQL(tablaTarjeta)
         db.execSQL(tablaUsuario_Tarjeta)
@@ -148,6 +173,9 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         db.execSQL(insertVelas)
         db.execSQL(insertVelas2)
         db.execSQL(insertAdmin)
+        db.execSQL(insertCurso)
+        db.execSQL(insertCurso2)
+
     }
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
@@ -389,5 +417,47 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         if (values.size() > 0) db.update("Producto", values, "idProducto=?", arrayOf(codigo))
         if (values2.size() > 0) db.update("Curso", values2, "idProducto=?", arrayOf(codigo))
 
+    }
+
+    // Método para sacar la información del curso
+
+    fun getCurso(): Curso? {
+        val db = readableDatabase
+        // Consulta SQL con INNER JOIN entre Curso y Producto
+        val query = """
+        SELECT 
+            Producto.idProducto,
+            Producto.nombre,
+            Producto.precio,
+            Producto.descripcion,
+            Producto.informacion,
+            Producto.imagen,
+            Curso.plazasDisponibles,
+            Curso.plazasMaximas
+        FROM Curso
+        INNER JOIN Producto ON Curso.idProducto = Producto.idProducto
+        LIMIT 1;
+    """
+
+        val cursor = db.rawQuery(query, null)
+
+        return if (cursor.moveToFirst()) {
+            // Crear un objeto Curso con los datos recuperados
+            val curso = Curso(
+                idProducto = cursor.getInt(cursor.getColumnIndexOrThrow("idProducto")),
+                nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre")),
+                precio = cursor.getDouble(cursor.getColumnIndexOrThrow("precio")),
+                descripcion = cursor.getString(cursor.getColumnIndexOrThrow("descripcion")),
+                informacion = cursor.getString(cursor.getColumnIndexOrThrow("informacion")),
+                imagen = cursor.getString(cursor.getColumnIndexOrThrow("imagen")),
+                plazasDisponibles = cursor.getInt(cursor.getColumnIndexOrThrow("plazasDisponibles")),
+                plazasMaximas = cursor.getInt(cursor.getColumnIndexOrThrow("plazasMaximas"))
+            )
+            cursor.close()
+            curso
+        } else {
+            cursor.close()
+            null
+        }
     }
 }
