@@ -47,6 +47,12 @@ class Inicio : Fragment() {
         return view
     }
 
+    private fun fragmentLoader(fragment:Fragment) {
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.fragment_container, fragment)
+            .commit()
+    }
+
     private fun mostrarVelas() {
         val VelasFragment=VelasFragment()
         parentFragmentManager.beginTransaction()

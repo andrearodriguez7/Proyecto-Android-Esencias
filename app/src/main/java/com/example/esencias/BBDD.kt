@@ -111,12 +111,47 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         val insertVelas = """
             INSERT INTO Producto  (precio,descripcion,informacion, nombre, imagen)
             VALUES
-            (9.99,'','', 'Vela aromática con esencia de lavanda', 'https://i.pinimg.com/originals/66/82/d3/6682d3b1da1a78b3843b951613be0288.jpg'),
-            (12.99,'','', 'Vela perfumada de vainilla', 'https://i.pinimg.com/originals/66/82/d3/6682d3b1da1a78b3843b951613be0288.jpg'),
-            (15.99,'','', 'Vela con fragancia de rosa', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images'),
-            (10.99,'','', 'Vela de coco con aroma tropical', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images'),
-            (14.99,'','', 'Vela de canela y especias', 'https://cdn.shopify.com/s/files/1/0732/7734/1971/files/R0M__VELA_RUSTIQUE_NO_AROMATICA_5.5X5.5_MARFIL_c.jpg?v=1686316324'),
-            (15.99,'','', 'Vela con fragancia de rosa', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F7d%2Ff4%2F1a%2F7df41a57de92a482e68e279b07726563.png&f=1&nofb=1&ipt=2662a365556b941c61b1c75e572e002e7e40475172b6e8bdca758718da691f18&ipo=images');
+            (9.99,'Disfruta de nuestra vela aromática con esencia de lavanda, que llena el ambiente de serenidad y frescura. Perfecta para acompañarte en momentos de relajación, ya sea mientras lees, meditas o simplemente te desconectas del mundo. Su delicado aroma floral transforma cualquier espacio en un remanso de paz, invitándote a respirar profundo y dejar atrás el estrés del día. ¡Haz de cada instante un oasis de calma y bienestar!','Todas nuestras velas y todos sus componentes, independientemente de su aroma, son 100% veganas y cruelty free.
+Ingredientes: cera 100% de soja sin aditivos, mecha de algodón ecológico, aceites esenciales y esencias aromáticas de calidad premium, certificados por la IFRA.
+
+260 gr / 450 gr
+
+Horas de encendido: 60/90 horas', 'Vela con esencia de lavanda', 'https://i.pinimg.com/originals/66/82/d3/6682d3b1da1a78b3843b951613be0288.jpg'),
+           
+            (12.99,'Descubre nuestra vela perfumada de vainilla, diseñada para envolver tus sentidos en una cálida y dulce fragancia. Ideal para crear un ambiente acogedor en tus momentos de descanso o reflexión. Su aroma envolvente transforma cualquier espacio en un refugio de confort y tranquilidad, perfecto para tardes de lectura, un baño relajante o una cena íntima. ¡Llena tu hogar de magia y serenidad con cada chispa!','Todas nuestras velas y todos sus componentes, independientemente de su aroma, son 100% veganas y cruelty free.
+Ingredientes: cera 100% de soja sin aditivos, mecha de algodón ecológico, aceites esenciales y esencias aromáticas de calidad premium, certificados por la IFRA.
+
+260 gr / 450 gr
+
+Horas de encendido: 60/90 horas', 'Vela perfumada de vainilla', 'https://i.pinimg.com/originals/66/82/d3/6682d3b1da1a78b3843b951613be0288.jpg'),
+            
+            (15.99,'Sumérgete en la elegancia de nuestra vela con fragancia de rosa, que llena tus espacios con un aroma floral y sofisticado. Perfecta para crear un ambiente romántico o para momentos de autocuidado, su delicado perfume inspira calma y belleza. Ya sea acompañando una cena especial, un baño relajante o una tarde tranquila, esta vela transforma cualquier rincón en un oasis de encanto y armonía. ¡Añade un toque de refinamiento y serenidad a tu día!','Todas nuestras velas y todos sus componentes, independientemente de su aroma, son 100% veganas y cruelty free.
+Ingredientes: cera 100% de soja sin aditivos, mecha de algodón ecológico, aceites esenciales y esencias aromáticas de calidad premium, certificados por la IFRA.
+
+260 gr / 450 gr
+
+Horas de encendido: 60/90 horas', 'Vela con fragancia de rosa', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images'),
+            
+            (10.99,'Déjate llevar por el encanto exótico de nuestra vela de coco con aroma tropical, que trae a tu hogar la calidez y frescura de un paraíso lejano. Perfecta para momentos de relajación o para añadir un toque vibrante a tus espacios, su fragancia te transporta a playas de arena blanca y brisas tropicales. Ya sea para una tarde de descanso, una cena especial o simplemente para disfrutar el momento, esta vela convierte cualquier ambiente en un rincón de verano eterno. ¡Haz de cada día una escapada tropical!','Todas nuestras velas y todos sus componentes, independientemente de su aroma, son 100% veganas y cruelty free.
+Ingredientes: cera 100% de soja sin aditivos, mecha de algodón ecológico, aceites esenciales y esencias aromáticas de calidad premium, certificados por la IFRA.
+
+260 gr / 450 gr
+
+Horas de encendido: 60/90 horas', 'Vela de coco con aroma tropical', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fmejorconsalud.as.com%2Fwp-content%2Fuploads%2F2019%2F05%2Fhacer-velas-arom%25C3%25A1ticas-de-gel.jpg&f=1&nofb=1&ipt=9520c5f7bc035d20b99fd4c49ec9007622ff70f2c18c619b4e3b4f762646794c&ipo=images'),
+           
+            (14.99,'Enciende la calidez de nuestra vela de canela y especias, que envuelve tu hogar en un abrazo aromático lleno de confort. Su fragancia rica y especiada es ideal para crear un ambiente acogedor en días frescos o para añadir un toque especial a tus momentos de relajación. Perfecta para acompañar tardes de lectura, reuniones íntimas o una pausa con tu bebida favorita, esta vela transforma cualquier espacio en un refugio cálido y nostálgico. ¡Haz que cada instante sea único con su magia especiada!','Todas nuestras velas y todos sus componentes, independientemente de su aroma, son 100% veganas y cruelty free.
+Ingredientes: cera 100% de soja sin aditivos, mecha de algodón ecológico, aceites esenciales y esencias aromáticas de calidad premium, certificados por la IFRA.
+
+260 gr / 450 gr
+
+Horas de encendido: 60/90 horas', 'Vela de canela y especias', 'https://cdn.shopify.com/s/files/1/0732/7734/1971/files/R0M__VELA_RUSTIQUE_NO_AROMATICA_5.5X5.5_MARFIL_c.jpg?v=1686316324'),
+            
+            (15.99,'Disfruta de la pureza y frescura de nuestra vela con fragancia de algodón, que llena tus espacios de una sensación de limpieza y tranquilidad. Ideal para crear un ambiente sereno y relajante, su delicado aroma evoca la suavidad de las sábanas recién lavadas y la brisa fresca de un día soleado. Perfecta para tus momentos de descanso, meditación o simplemente para renovar el ambiente, esta vela convierte cualquier rincón en un oasis de calma y frescura. ¡Lleva la esencia de lo simple y lo puro a tu hogar!','Todas nuestras velas y todos sus componentes, independientemente de su aroma, son 100% veganas y cruelty free.
+Ingredientes: cera 100% de soja sin aditivos, mecha de algodón ecológico, aceites esenciales y esencias aromáticas de calidad premium, certificados por la IFRA.
+
+260 gr / 450 gr
+
+Horas de encendido: 60/90 horas', 'Vela con fragancia de algodón', 'https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fi.pinimg.com%2Foriginals%2F7d%2Ff4%2F1a%2F7df41a57de92a482e68e279b07726563.png&f=1&nofb=1&ipt=2662a365556b941c61b1c75e572e002e7e40475172b6e8bdca758718da691f18&ipo=images');
 
         """
 

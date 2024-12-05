@@ -11,7 +11,10 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 
-class Adaptador(private val itemList: List<Vela>) : RecyclerView.Adapter<Adaptador.ViewHolder>() {
+class Adaptador(
+        private val itemList: List<Vela>,
+        private val onItemClick: (Vela) -> Unit
+                ): RecyclerView.Adapter<Adaptador.ViewHolder>() {
 
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombre: TextView = itemView.findViewById(R.id.nombreVela)
@@ -33,6 +36,10 @@ class Adaptador(private val itemList: List<Vela>) : RecyclerView.Adapter<Adaptad
             .load(item.imagen)
             .apply(RequestOptions().transform(RoundedCorners(40)))
             .into(holder.imagen)
+
+        holder.itemView.setOnClickListener {
+            onItemClick(item)
+        }
     }
 
     override fun getItemCount(): Int {
