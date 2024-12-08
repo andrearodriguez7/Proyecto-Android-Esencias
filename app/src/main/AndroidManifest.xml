@@ -15,6 +15,9 @@
         android:theme="@style/Theme.Esencias"
         tools:targetApi="31">
         <activity
+            android:name=".AppActivityInvitado"
+            android:exported="false" />
+        <activity
             android:name=".AppActivityAdmin"
             android:exported="false"
             android:theme="@style/Theme.Esencias" />

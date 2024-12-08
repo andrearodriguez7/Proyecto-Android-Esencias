@@ -9,27 +9,6 @@
 
 
     <LinearLayout
-        android:id="@+id/linearLayout6"
-        android:layout_width="415dp"
-        android:layout_height="90dp"
-        android:background="@color/white"
-        android:gravity="center_vertical"
-        android:orientation="horizontal"
-        android:padding="16dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="-4dp">
-
-
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="389dp"
-            android:layout_height="72dp"
-            android:layout_weight="1"
-            app:srcCompat="@drawable/logo"
-            tools:ignore="MissingConstraints" />
-    </LinearLayout>
-
-    <LinearLayout
         android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -39,7 +18,7 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.135">
+        app:layout_constraintVertical_bias="0.0">
 
         <ImageView
             android:id="@+id/Flecha"
@@ -69,14 +48,19 @@
     </LinearLayout>
 
     <LinearLayout
+        android:id="@+id/linearLayout7"
         android:layout_width="411dp"
         android:layout_height="142dp"
         android:background="@color/verdepastel"
         android:orientation="horizontal"
         android:padding="16dp"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="165dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.135"
+        tools:ignore="MissingConstraints">
 
 
         <ImageView
@@ -108,13 +92,17 @@
             android:src="@drawable/flechadelado" />
     </LinearLayout>
 
-
     <LinearLayout
+        android:id="@+id/linearLayout8"
         android:layout_width="413dp"
         android:layout_height="91dp"
         android:background="@color/verdepastel"
-        tools:layout_editor_absoluteX="-2dp"
-        tools:layout_editor_absoluteY="320dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.253"
         tools:ignore="MissingConstraints">
 
         <TextView

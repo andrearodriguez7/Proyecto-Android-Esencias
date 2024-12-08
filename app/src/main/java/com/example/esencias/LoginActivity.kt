@@ -38,6 +38,9 @@ class LoginActivity : AppCompatActivity() {
         registro.setOnClickListener {
             abrirActivity(RegisterActivity::class.java)
         }
+        invitado.setOnClickListener{
+            abrirActivity(AppActivityInvitado::class.java)
+        }
 
         inicio.setOnClickListener{
             var nombre:String?=findViewById<EditText>(R.id.loginEmail).text.toString()
