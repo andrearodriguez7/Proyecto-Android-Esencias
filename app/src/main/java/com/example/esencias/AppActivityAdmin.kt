@@ -20,7 +20,7 @@ class AppActivityAdmin : AppCompatActivity() {
             insets
         }
         // se carga el fragment de MenuAdministrador al empezar la actividad
-        cargarFragment(savedInstanceState,MenuAdministrador())
+        cargarFragment(savedInstanceState,Inicio())
 
         // declaracion de los botones
 
@@ -48,7 +48,6 @@ class AppActivityAdmin : AppCompatActivity() {
         botonAjustes.setOnClickListener{
             cargarFragment(savedInstanceState,SettingsFragment())
         }
-
 
     }
 

@@ -53,7 +53,9 @@ class LoginActivity : AppCompatActivity() {
                 val quienEs=bd.verificarUsuario(nombre,pass)
                 if(quienEs[0]){
                     if(quienEs[1]){
-                        abrirActivity(AppActivityAdmin::class.java)
+                        val intent = Intent(this, ActivityEsencias::class.java)
+                        intent.putExtra("fragmento","MenuAdministrador")
+                        startActivity(intent)
                     }else
                         abrirActivity(AppActivity::class.java)
                 }else{
