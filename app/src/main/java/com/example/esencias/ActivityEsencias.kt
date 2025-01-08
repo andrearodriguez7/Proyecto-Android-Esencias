@@ -17,10 +17,13 @@ class ActivityEsencias : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+        /*
+        * La variable "fragment" recogerá un valor extra proporcionado el cual corresponderá
+        * con el nombre del fragmento a mostrar
+        * */
+        val fragment= intent.getStringExtra("fragmento")
 
-        val fragmento= intent.getStringExtra("fragmento")
-
-        if(fragmento=="MenuAdministrador") cargarFragment(savedInstanceState, MenuAdministrador())
+        if(fragment=="MenuAdministrador") cargarFragment(savedInstanceState, MenuAdministrador())
 
     }
 

@@ -391,7 +391,7 @@ Precio: 39,99€', 'Curso: Crea tu vela',
 
         val values2 = ContentValues().apply {
             if(tamano!=null && tamano!="") put("tamano",tamano)
-            if(aromas!=null && aromas!="")put("aromas",aromas)
+            if(aromas!=null && aromas!="") put("aromas",aromas)
         }
 
         if (values.size() > 0) db.update("Producto", values, "idProducto=?", arrayOf(codigo))

@@ -29,6 +29,7 @@ class LoginActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
         // Traigo los botones del layout
         val registro: TextView = findViewById(R.id.registro)
         val inicio: Button = findViewById(R.id.entrarButton)
@@ -43,32 +44,36 @@ class LoginActivity : AppCompatActivity() {
         }
 
         inicio.setOnClickListener{
-            var nombre:String?=findViewById<EditText>(R.id.loginEmail).text.toString()
-            val pass=findViewById<EditText>(R.id.loginPass).text.toString()
-            val bd=BBDD(this)
-
-            nombre=bd.encontrarUsuario(nombre)
-
-            if(nombre!=null){
-                val quienEs=bd.verificarUsuario(nombre,pass)
-                if(quienEs[0]){
-                    if(quienEs[1]){
-                        val intent = Intent(this, ActivityEsencias::class.java)
-                        intent.putExtra("fragmento","MenuAdministrador")
-                        startActivity(intent)
-                    }else
-                        abrirActivity(AppActivity::class.java)
-                }else{
-                    Toast.makeText(this,"Contraseña incorrecta...",Toast.LENGTH_LONG).show()
-                }
-            }else{
-                Toast.makeText(this,"Usuario no encontrado",Toast.LENGTH_LONG).show()
-            }
+            iniciarSesion()
         }
     }
 
     private fun <T : Activity> abrirActivity(clase: Class<T>) {
         val intent = Intent(this, clase)
         startActivity(intent)
+    }
+
+    private fun iniciarSesion(){
+        var nombre:String?=findViewById<EditText>(R.id.loginEmail).text.toString()
+        val pass=findViewById<EditText>(R.id.loginPass).text.toString()
+        val bd=BBDD(this)
+
+        nombre=bd.encontrarUsuario(nombre)
+
+        if(nombre!=null){
+            val quienEs=bd.verificarUsuario(nombre,pass)
+            if(quienEs[0]){
+                if(quienEs[1]){
+                    val intent = Intent(this, ActivityEsencias::class.java)
+                    intent.putExtra("fragmento","MenuAdministrador")
+                    startActivity(intent)
+                }else
+                    abrirActivity(AppActivity::class.java)
+            }else{
+                Toast.makeText(this,"Contraseña incorrecta...",Toast.LENGTH_LONG).show()
+            }
+        }else{
+            Toast.makeText(this,"Usuario no encontrado",Toast.LENGTH_LONG).show()
+        }
     }
 }

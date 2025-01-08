@@ -14,20 +14,13 @@ import androidx.fragment.app.replace
 import com.skydoves.expandablelayout.ExpandableLayout
 
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 
 class GestionCursos : Fragment() {
 
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -38,14 +31,24 @@ class GestionCursos : Fragment() {
     ): View? {
 
         val view = inflater.inflate(R.layout.fragment_gestion_cursos, container, false)
+
+        // Variables para controlar los layouts expansibles
+
         val expandableLayout = view.findViewById<ExpandableLayout>(R.id.expandableLayout)
         val expandableLayout2 = view.findViewById<ExpandableLayout>(R.id.expandableLayout2)
         val expandableLayout3 = view.findViewById<ExpandableLayout>(R.id.expandableLayout3)
+
+        // Crear una lista con los ExpandableLayouts
+        val expandableLayouts = listOf(expandableLayout, expandableLayout2, expandableLayout3)
+
+
         val flechaVolver = view.findViewById<ImageView>(R.id.FlechaVolverCursos)
 
         val botonInsertar= view.findViewById<Button>(R.id.InsertarButtonCursos)
         val botonEliminar= view.findViewById<Button>(R.id.EliminarButtonCursos)
         val botonModificar= view.findViewById<Button>(R.id.ModificarButtonCursos)
+
+        // Listeners
 
         flechaVolver.setOnClickListener{
             parentFragmentManager
@@ -87,39 +90,14 @@ class GestionCursos : Fragment() {
             db.modificarCurso(codigoModificar,nombreModificar,precioModificar.toDouble(),descripcionModificar,informacionModificar,imagenModificar,0,0)
         }
 
-        expandableLayout.setOnClickListener {
-            if (expandableLayout.isExpanded) {
-                expandableLayout.collapse()
-            } else {
-                expandableLayout.expand()
+        // Implementa el listener en todos los expandableLayouts y permite que estos se expandan y contraigan
+
+        for(aux in expandableLayouts){
+            aux.setOnClickListener {
+                if (aux.isExpanded) aux.collapse() else aux.expand()
             }
         }
-        expandableLayout2.setOnClickListener {
-            if (expandableLayout2.isExpanded) {
-                expandableLayout2.collapse()
-            } else {
-                expandableLayout2.expand()
-            }
-        }
-        expandableLayout3.setOnClickListener {
-            if (expandableLayout3.isExpanded) {
-                expandableLayout3.collapse()
-            } else {
-                expandableLayout3.expand()
-            }
-        }
+
         return view
-    }
-
-    companion object {
-
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            GestionVelas().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }

@@ -11,11 +11,21 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 
+/*
+* Extiende a la clase Adapter de RecyclerView
+* recibe la lista de velas a mostrar
+* recibe tambien una funcion lambda que se ejecutará al darle click a una vela
+* */
+
 class Adaptador(
-        private val itemList: List<Vela>,
+        private val listaVelas: List<Vela>,
         private val onItemClick: (Vela) -> Unit
                 ): RecyclerView.Adapter<Adaptador.ViewHolder>() {
 
+    /*
+     * Clase interna ViewHolder que se encarga de gestionar las vistas individuales
+     * de cada elemento del RecyclerView.
+     * */
     class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val nombre: TextView = itemView.findViewById(R.id.nombreVela)
         val precio: TextView = itemView.findViewById(R.id.precioVela)
@@ -28,7 +38,7 @@ class Adaptador(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val item = itemList[position]
+        val item = listaVelas[position]
         holder.nombre.text = item.nombre
         holder.precio.text = item.precio
 
@@ -43,6 +53,6 @@ class Adaptador(
     }
 
     override fun getItemCount(): Int {
-        return itemList.size
+        return listaVelas.size
     }
 }

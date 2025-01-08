@@ -48,11 +48,11 @@ class AppActivity : AppCompatActivity() {
 
     // metodo para mostrar fragments
 
-        private fun cargarFragment(savedInstanceState: Bundle?, fragment: Fragment) {
-            if (savedInstanceState == null) {
-                supportFragmentManager.beginTransaction()
-                    .replace(R.id.fragment_container, fragment)
-                    .commit()
-            }
+    private fun cargarFragment(savedInstanceState: Bundle?, fragment: Fragment) {
+        if (savedInstanceState == null) {
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.fragment_container, fragment)
+                .commit()
         }
+    }
 }

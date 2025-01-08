@@ -10,18 +10,11 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 
 
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
-
 class MenuAdministrador : Fragment() {
-    private var param1: String? = null
-    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
         }
     }
 
@@ -30,7 +23,9 @@ class MenuAdministrador : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view=inflater.inflate(R.layout.fragment_menu_administrador2, container, false)
+
         val flechaVolver:ImageView=view.findViewById(R.id.FlechaAdmin)
+
         val contenedorvelas: LinearLayout =view.findViewById(R.id.Contenedorvelas)
         val contenedorcursos: LinearLayout =view.findViewById(R.id.Contenedorcursos)
 
@@ -54,16 +49,5 @@ class MenuAdministrador : Fragment() {
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container_esencias,fragment)
             .commit()
-    }
-
-    companion object {
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            MenuAdministrador().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
-                }
-            }
     }
 }
