@@ -53,12 +53,12 @@ dependencies {
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
 
-    implementation ("com.github.skydoves:expandablelayout:1.0.7")
+    implementation (libs.expandablelayout)
     
-    implementation("androidx.recyclerview:recyclerview:1.2.1")
-    implementation ("androidx.cardview:cardview:1.0.0")
+    implementation(libs.androidx.recyclerview)
+    implementation (libs.androidx.cardview)
 
-    implementation("com.github.bumptech.glide:glide:4.15.1")
-    annotationProcessor("com.github.bumptech.glide:compiler:4.15.1")
+    implementation(libs.glide)
+    annotationProcessor(libs.compiler)
 
 }

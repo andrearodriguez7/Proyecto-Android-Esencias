@@ -48,43 +48,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
-        <ImageView
-            android:id="@+id/Vela1"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/diadelluvia"
-            tools:layout_editor_absoluteX="15dp"
-            tools:layout_editor_absoluteY="398dp" />
-
-        <ImageView
-            android:id="@+id/Vela2"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/lecturaymanta"
-            tools:layout_editor_absoluteX="125dp"
-            tools:layout_editor_absoluteY="398dp" />
-
-        <ImageView
-            android:id="@+id/Vela3"
-            android:layout_width="60dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:padding="8dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/tardedepelis"
-            tools:layout_editor_absoluteX="235dp"
-            tools:layout_editor_absoluteY="398dp" />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recyclerVelas"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent" />
 
         <ImageView
             android:id="@+id/Mas"
-            android:layout_width="17dp"
-            android:layout_height="25dp"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
             android:layout_gravity="center"
             android:layout_weight="1"
             android:src="@drawable/mas"
@@ -92,48 +64,6 @@
             tools:layout_editor_absoluteY="429dp" />
 
     </LinearLayout>
-
-    <TextView
-        android:id="@+id/TituloVela2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/baloo_thambi_2"
-        android:text="Lectura y manta"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.398"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.609" />
-
-    <TextView
-        android:id="@+id/TituloVela1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/baloo_thambi_2"
-        android:text="Día de lluvia"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.081"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.61" />
-
-    <TextView
-        android:id="@+id/TituloVela3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/baloo_thambi_2"
-        android:text="Tarde de pelis"
-        android:textSize="15sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.744"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.609" />
 
     <ImageView
         android:id="@+id/FotoCurso"

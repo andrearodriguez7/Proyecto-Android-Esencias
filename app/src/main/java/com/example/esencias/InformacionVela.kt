@@ -5,69 +5,62 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners
-import com.bumptech.glide.request.RequestOptions
+import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 
 
-private lateinit var vela: Vela
-
-class InformacionVela : Fragment() {
+class Inicio : Fragment() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        arguments?.let {
-            vela = it.getParcelable("vela") ?: throw IllegalArgumentException("Vela no encontrada")
-        }
-
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_informacion_vela, container, false)
+        val view = inflater.inflate(R.layout.fragment_inicio, container, false)
 
-        // Referencias a los elementos de la vista
+        // Recuperamos la lista de velas y limitamos a 3 elementos
+        val db = BBDD(requireContext())
+        val listaVelas = db.listaVelas().take(3) // Solo 3 velas
 
-        val imageVela: ImageView = view.findViewById(R.id.imageVela)
-        val titleVela: TextView = view.findViewById(R.id.titleVela)
-        val descriptionVela: TextView = view.findViewById(R.id.descriptionVela)
-        val infoVela: TextView = view.findViewById(R.id.infoVela)
-        val botonVelaGrande: Button = view.findViewById(R.id.botonVelaGrande)
-        val botonVelaChica: Button = view.findViewById(R.id.botonVelaChica)
+        // Configurar RecyclerView
+        val recyclerView = view.findViewById<RecyclerView>(R.id.recyclerVelas)
+        recyclerView.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+        recyclerView.adapter = AdaptadorInicio(listaVelas) { vela ->
+            mostrarInfoVela(vela)
+        }
 
-        Glide.with(imageVela.context)
-            .load(vela.imagen)
-            .apply(RequestOptions())
-            .into(imageVela)
+        // Configurar botón "Más velas"
+        val masVelas: ImageView = view.findViewById(R.id.Mas)
+        masVelas.setOnClickListener {
+            cargarFragment(VelasFragment()) // Abre el fragmento de todas las velas
+        }
 
-        titleVela.text=vela.nombre
-
-        descriptionVela.text=vela.descripcion
-
-        infoVela.text=vela.informacion
-
-        // TODO Falta poner la info y funcionalidad de los botones del tamaño de la vela
-
-        view.findViewById<ImageButton>(R.id.volverButton).setOnClickListener{
-            fragmentLoader(VelasFragment())
+        // Configurar botón "Información curso"
+        val infoCurso: ImageView = view.findViewById(R.id.FotoCurso)
+        infoCurso.setOnClickListener {
+            cargarFragment(InformacionCurso()) // Abre información del curso
         }
 
         return view
-
-
+    }
+    private fun mostrarInfoVela(vela:Vela) {
+        val fragment=InformacionVela()
+        val bundle=Bundle()
+        bundle.putParcelable("vela",vela)
+        fragment.arguments=bundle
+        cargarFragment(fragment)
     }
 
-    private fun fragmentLoader(fragment:Fragment) {
+    private fun cargarFragment(fragment: Fragment) {
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null) // Permite volver atrás
             .commit()
     }
-
 }
