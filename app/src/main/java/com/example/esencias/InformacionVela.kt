@@ -55,8 +55,9 @@ class InformacionVela : Fragment() {
 
         // TODO Falta poner la info y funcionalidad de los botones del tamaño de la vela
 
-        view.findViewById<ImageButton>(R.id.volverButton).setOnClickListener{
-            fragmentLoader(VelasFragment())
+        view.findViewById<ImageButton>(R.id.volverButton).setOnClickListener {
+            // Regresar al fragmento anterior en la pila de retroceso
+            parentFragmentManager.popBackStack()
         }
 
         return view

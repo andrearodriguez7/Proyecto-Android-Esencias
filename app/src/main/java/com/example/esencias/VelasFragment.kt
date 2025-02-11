@@ -55,6 +55,7 @@ class VelasFragment : Fragment() {
     private fun fragmentLoader(fragment:Fragment) {
         parentFragmentManager.beginTransaction()
             .replace(R.id.fragment_container, fragment)
+            .addToBackStack(null)
             .commit()
     }
 }

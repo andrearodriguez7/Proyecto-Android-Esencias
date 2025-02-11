@@ -8,6 +8,7 @@ import android.widget.TextView
 
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.resource.bitmap.CenterCrop
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
 
@@ -44,7 +45,7 @@ class Adaptador(
 
         Glide.with(holder.imagen.context)
             .load(item.imagen)
-            .apply(RequestOptions().transform(RoundedCorners(40)))
+            .transform(CenterCrop(), RoundedCorners(20))
             .into(holder.imagen)
 
         holder.itemView.setOnClickListener {
