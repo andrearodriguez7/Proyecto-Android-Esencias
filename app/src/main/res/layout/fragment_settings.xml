@@ -48,82 +48,120 @@
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout7"
-        android:layout_width="411dp"
-        android:layout_height="142dp"
-        android:background="@color/verdepastel"
-        android:orientation="horizontal"
-        android:padding="16dp"
+        android:id="@+id/ContenedorGeneral"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.135"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+        app:layout_constraintVertical_bias="0.0"/>
 
+    <LinearLayout
+        android:id="@+id/Contenedorcursos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.079">
 
         <ImageView
-            android:id="@+id/FotoPerfil"
-            android:layout_width="59dp"
-            android:layout_height="99dp"
-            android:layout_centerInParent="true"
-            android:layout_gravity="center_vertical"
-            android:background="@drawable/circulo"
-            android:scaleType="centerCrop"
-            android:src="@drawable/fotoperfil2" />
+            android:id="@+id/fotoUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:background="@color/verdepastel"
+            android:padding="27dp"
+            app:srcCompat="@drawable/entrar"
+            tools:srcCompat="@drawable/entrar" />
 
         <TextView
-            android:layout_width="59dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="EditarPerfil"
-            android:textSize="20sp" />
-
+            android:id="@+id/Cursos"
+            android:layout_width="239dp"
+            android:layout_height="70dp"
+            android:background="@color/verdepastel"
+            android:fontFamily="@font/baloo_thambi_2"
+            android:gravity="center"
+            android:text="Editar perfil"
+            android:textAlignment="textStart"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="RtlCompat" />
 
         <ImageView
-            android:id="@+id/FlechaPerfil"
-            android:layout_width="50dp"
-            android:layout_height="43dp"
-            android:layout_gravity="center_vertical"
-            android:src="@drawable/flechadelado" />
+            android:id="@+id/flechacursos"
+            android:layout_width="wrap_content"
+            android:layout_height="70dp"
+            android:layout_weight="1"
+            android:background="@color/verdepastel"
+            android:padding="27dp"
+            app:srcCompat="@drawable/entrar"
+            tools:srcCompat="@drawable/entrar" />
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/linearLayout8"
-        android:layout_width="413dp"
-        android:layout_height="91dp"
-        android:background="@color/verdepastel"
+        android:id="@+id/Contenedorusuario"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.253"
-        tools:ignore="MissingConstraints">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.197">
 
         <TextView
-            android:layout_width="322dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="Versión"
-            android:textSize="20sp" />
+            android:id="@+id/Usuario"
+            android:layout_width="239dp"
+            android:layout_height="70dp"
+            android:background="@color/verdepastel"
+            android:fontFamily="@font/baloo_thambi_2"
+            android:gravity="center"
+            android:paddingLeft="50dp"
+            android:text="Version"
+            android:textAlignment="textStart"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="RtlCompat" />
 
         <TextView
-            android:layout_width="208dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center_vertical"
-            android:layout_weight="1"
-            android:paddingStart="16dp"
-            android:paddingEnd="16dp"
-            android:text="1.0.2.2"
-            android:textSize="20sp" />
+            android:id="@+id/NumVersion"
+            android:layout_width="170dp"
+            android:layout_height="70dp"
+            android:background="@color/verdepastel"
+            android:fontFamily="@font/baloo_thambi_2"
+            android:gravity="center"
+            android:paddingLeft="50dp"
+            android:text="1.01.1"
+            android:textAlignment="textStart"
+            android:textSize="24sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout"
+            app:layout_constraintVertical_bias="0.0"
+            tools:ignore="RtlCompat" />
+
 
     </LinearLayout>
 
