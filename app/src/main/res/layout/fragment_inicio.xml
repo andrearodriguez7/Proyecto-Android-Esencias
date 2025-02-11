@@ -38,32 +38,35 @@
 
     <LinearLayout
         android:id="@+id/ContenedorVelas"
-        android:layout_width="409dp"
-        android:layout_height="110dp"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="20dp"
         android:orientation="horizontal"
-        android:padding="15dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        android:gravity="center"
+        app:layout_constraintTop_toBottomOf="@id/TituloVelas"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintEnd_toEndOf="parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerVelas"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerVelas"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:overScrollMode="never"
+        android:clipToPadding="false" />
 
-        <ImageView
-            android:id="@+id/Mas"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="center"
-            android:layout_weight="1"
-            android:src="@drawable/mas"
-            tools:layout_editor_absoluteX="344dp"
-            tools:layout_editor_absoluteY="429dp" />
-
-    </LinearLayout>
+    <ImageView
+        android:id="@+id/Mas"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="10dp"
+        android:src="@drawable/mas"
+        android:contentDescription="Ver más velas"
+        android:clickable="true"
+        android:focusable="true"/>
+</LinearLayout>
 
     <ImageView
         android:id="@+id/FotoCurso"
@@ -71,13 +74,14 @@
         android:layout_height="100dp"
         android:scaleType="centerCrop"
         android:src="@drawable/fotocursos"
+        android:background="@drawable/rounded_corners"
+        android:clipToOutline="true"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.52"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.829" />
-
     <TextView
         android:id="@+id/TituloCursos"
         android:layout_width="wrap_content"
