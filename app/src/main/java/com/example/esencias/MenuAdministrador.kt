@@ -28,6 +28,7 @@ class MenuAdministrador : Fragment() {
 
         val contenedorvelas: LinearLayout =view.findViewById(R.id.Contenedorvelas)
         val contenedorcursos: LinearLayout =view.findViewById(R.id.Contenedorcursos)
+        val contenedorusuario: LinearLayout =view.findViewById(R.id.Contenedorusuario)
 
         contenedorvelas.setOnClickListener{
             abrirFragment(GestionVelas())
@@ -35,6 +36,10 @@ class MenuAdministrador : Fragment() {
 
         contenedorcursos.setOnClickListener{
             abrirFragment(GestionCursos())
+        }
+
+        contenedorusuario.setOnClickListener{
+            abrirFragment(GestionUsuarios())
         }
 
         flechaVolver.setOnClickListener{

@@ -495,4 +495,63 @@ Precio: 39,99€', 'Curso: Crea tu vela',
             null
         }
     }
+
+    // Método para eliminar usuario
+
+    fun eliminarUsuario(correo: String): Boolean {
+        val db = this.writableDatabase
+        return try {
+            val rowsDeleted = db.delete("Usuario", "correo = ?", arrayOf(correo))
+            db.close()
+            rowsDeleted > 0 // Devuelve true si se eliminó al menos un usuario
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false // En caso de error, devuelve false
+        }
+    }
+
+    // Método para poder modificar un usuario
+
+    fun modificarUsuario(correo: String, nombre: String, pass: String, tlfn: String, fotoPerfil: String): Boolean {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("nombre", nombre)
+            put("pass", pass)
+            put("tlfn", tlfn)
+            put("fotoPerfil", fotoPerfil)
+        }
+        return try {
+            val rowsUpdated = db.update("Usuario", values, "correo = ?", arrayOf(correo))
+            db.close()
+            rowsUpdated > 0 // Devuelve true si se modificó al menos un usuario
+        } catch (e: Exception) {
+            e.printStackTrace()
+            false // En caso de error, devuelve false
+        }
+    }
+
+    // Método para añadir un nuevo usuario
+
+    fun insertarUsuario2(correo: String, nombre: String, pass: String, tlfn: String, fotoPerfil: String): Int {
+        val db = this.writableDatabase
+        val values = ContentValues().apply {
+            put("correo", correo)
+            put("nombre", nombre)
+            put("pass", pass)
+            put("tlfn", tlfn)
+            put("fotoPerfil", fotoPerfil)
+        }
+        return try {
+            db.insertOrThrow("Usuario", null, values)
+            db.close()
+            0 // Inserción correcta
+        } catch (e: SQLiteConstraintException) {
+            when {
+                e.message?.contains("UNIQUE constraint failed: Usuario.correo") == true -> 1 // Correo duplicado
+                e.message?.contains("UNIQUE constraint failed: Usuario.nombre") == true -> 2 // Nombre duplicado
+                else -> -1 // Otro error
+            }
+        }
+    }
+
 }
