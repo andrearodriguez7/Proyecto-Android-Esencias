@@ -30,7 +30,7 @@ class ActivityEsencias : AppCompatActivity() {
     private fun cargarFragment(savedInstanceState: Bundle?, fragment: Fragment) {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container_esencias, PerfilFragment())
+                .replace(R.id.fragment_container_esencias, fragment)
                 .addToBackStack(null)
                 .commit()
         }

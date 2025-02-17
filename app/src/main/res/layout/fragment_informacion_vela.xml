@@ -92,18 +92,10 @@
                     android:layout_marginTop="16dp">
 
                     <Button
-                        android:id="@+id/botonVelaChica"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="260 gr"
-                        android:layout_marginRight="30dp"
-                        android:backgroundTint="@color/botonAdmin" />
-
-                    <Button
                         android:id="@+id/botonVelaGrande"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="450 gr"
+                        android:text="Añadir a la Cesta"
                         android:layout_marginStart="8dp"
                         android:backgroundTint="@color/botonAdmin" />
                 </LinearLayout>

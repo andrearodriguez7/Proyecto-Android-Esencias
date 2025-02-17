@@ -40,7 +40,7 @@ class InformacionVela : Fragment() {
         val descriptionVela: TextView = view.findViewById(R.id.descriptionVela)
         val infoVela: TextView = view.findViewById(R.id.infoVela)
         val botonVelaGrande: Button = view.findViewById(R.id.botonVelaGrande)
-        val botonVelaChica: Button = view.findViewById(R.id.botonVelaChica)
+        //val botonVelaChica: Button = view.findViewById(R.id.botonVelaChica)
 
         Glide.with(imageVela.context)
             .load(vela.imagen)
