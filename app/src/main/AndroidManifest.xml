@@ -26,9 +26,6 @@
             android:exported="false"
             android:theme="@style/Theme.Esencias" />
         <activity
-            android:name=".CambiarContraActivity"
-            android:exported="false" />
-        <activity
             android:name=".AppActivity"
             android:exported="false" />
         <activity

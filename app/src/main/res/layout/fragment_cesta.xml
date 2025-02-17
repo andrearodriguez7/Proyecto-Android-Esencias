@@ -1,12 +1,104 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CestaFragment">
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Soy la cesta" />
+    tools:context=".CestaFragment"
+    android:background="@color/amarillopollo">
 
-</FrameLayout>
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <ImageView
+            android:id="@+id/FlechaCesta"
+            android:layout_width="20dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/verdeadministrador"
+            android:paddingLeft="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/flechavolver" />
+
+        <TextView
+            android:id="@+id/Cesta"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/verdeadministrador"
+            android:fontFamily="@font/baloo_thambi_2"
+            android:gravity="center"
+            android:paddingRight="30dp"
+            android:text="Mi cesta"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+    </LinearLayout>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerCesta"
+        android:layout_width="410dp"
+        android:layout_height="561dp"
+        app:layout_constraintBottom_toTopOf="@id/contenedorTotal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/linearLayout"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <LinearLayout
+        android:id="@+id/contenedorTotal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/verdepastel"
+        android:orientation="horizontal"
+        app:layout_constraintTop_toBottomOf="@id/recyclerCesta"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/BotonCesta">
+
+        <TextView
+            android:id="@+id/tituloTotal"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="Total"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/Total"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="40dp"
+            android:gravity="center"
+            android:text="cantidad final"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/BotonCesta"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintTop_toBottomOf="@id/contenedorTotal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <Button
+            android:id="@+id/pagarButton"
+            android:layout_width="150dp"
+            android:layout_height="60dp"
+            android:backgroundTint="@color/botonAdmin"
+            android:text="Pagar"
+            android:textSize="20sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
