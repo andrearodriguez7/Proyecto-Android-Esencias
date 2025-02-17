@@ -1,7 +1,7 @@
 package com.example.esencias
 
 object Usuario {
-    var correo: String? = null
+    var correo: String =""
     var nombre: String? = null
     var pass: String? = null
     var direccion: String? = null
@@ -10,7 +10,7 @@ object Usuario {
     var tlfn: String? = null
 
     fun resetearDatos() {
-        correo = null
+        correo = ""
         nombre = null
         pass = null
         direccion = null

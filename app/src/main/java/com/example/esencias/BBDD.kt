@@ -5,6 +5,7 @@ import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
+import android.widget.Toast
 
 class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null, 1) {
 
@@ -552,6 +553,33 @@ Precio: 39,99€', 'Curso: Crea tu vela',
                 else -> -1 // Otro error
             }
         }
+    }
+
+    // Método para actualizar la contraseña del usuario
+
+    fun actualizarContrasena(context: Context, correo: String, nuevaContrasena: String): Boolean {
+        val db = this.writableDatabase
+        val valores = ContentValues()
+
+        // Obtener la contraseña actual
+        val cursor = db.rawQuery("SELECT pass FROM Usuario WHERE correo = ?", arrayOf(correo))
+        if (cursor.moveToFirst()) {
+            val contrasenaActual = cursor.getString(0)
+            if (contrasenaActual == nuevaContrasena) {
+                Toast.makeText(context, "La nueva contraseña no puede ser igual a la anterior.", Toast.LENGTH_SHORT).show()
+                cursor.close()
+                db.close()
+                return false
+            }
+        }
+        cursor.close()
+
+        // Si la contraseña es diferente, actualizarla
+        valores.put("pass", nuevaContrasena)
+        val resultado = db.update("Usuario", valores, "correo = ?", arrayOf(correo))
+        db.close()
+
+        return resultado > 0
     }
 
 }
