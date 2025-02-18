@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp">
+
+    <LinearLayout
+        android:layout_width="410dp"
+        android:layout_height="120dp"
+        android:background="@color/verdepastel"
+        android:orientation="horizontal"
+        android:padding="8dp">
+
+        <!-- Imagen de la vela -->
+        <ImageView
+            android:id="@+id/imagenVela"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_margin="6dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/diadelluvia" />
+
+        <!-- Contenedor de texto y controles -->
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical"
+            android:layout_marginTop="20dp"
+            android:paddingStart="16dp">
+
+            <!-- Nombre de la vela -->
+            <TextView
+                android:id="@+id/nombreVela"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/baloo_thambi_2"
+                android:text="Mi momento de calma"
+                android:textColor="@color/TituloLogin"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <!-- Contenedor con botones y precio -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <!-- Botón de restar cantidad -->
+                <ImageButton
+                    android:id="@+id/btnRestar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Restar cantidad"
+                    android:src="@drawable/menoscesta" />
+
+                <!-- Cantidad -->
+                <TextView
+                    android:id="@+id/txtCantidad"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="8dp"
+                    android:text="1"
+                    android:textColor="@color/black"
+                    android:textSize="18sp" />
+
+                <!-- Botón de sumar cantidad -->
+                <ImageButton
+                    android:id="@+id/btnSumar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Sumar cantidad"
+                    android:src="@drawable/mascesta" />
+
+
+                <!-- Botón de eliminar -->
+                <ImageButton
+                    android:id="@+id/btnEliminar"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:background="@android:color/transparent"
+                    android:contentDescription="Eliminar vela"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginRight="25dp"
+                    android:src="@drawable/multiplicarcesta" />
+
+                <!-- Precio de la vela -->
+                <TextView
+                    android:id="@+id/precioVela"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/baloo_thambi_2"
+                    android:text="17,50€"
+                    android:textColor="@color/TituloLogin"
+                    android:textSize="20sp"
+                    android:textStyle="bold" />
+
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>
