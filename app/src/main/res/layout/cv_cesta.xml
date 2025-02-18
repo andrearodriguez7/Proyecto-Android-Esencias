@@ -8,15 +8,14 @@
         android:layout_width="410dp"
         android:layout_height="120dp"
         android:background="@color/verdepastel"
-        android:orientation="horizontal"
-        android:padding="8dp">
+        android:orientation="horizontal">
 
         <!-- Imagen de la vela -->
         <ImageView
             android:id="@+id/imagenVela"
-            android:layout_width="100dp"
-            android:layout_height="100dp"
-            android:layout_margin="6dp"
+            android:layout_width="110dp"
+            android:layout_height="120dp"
+
             android:scaleType="centerCrop"
             android:src="@drawable/diadelluvia" />
 
