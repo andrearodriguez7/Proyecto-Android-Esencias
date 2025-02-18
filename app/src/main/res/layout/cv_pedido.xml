@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="16dp"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+
+        android:background="@color/verdepastel">
+
+        <ImageView
+            android:id="@+id/imagenPedido"
+            android:layout_width="134dp"
+            android:layout_height="153dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/diadelluvia" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="16dp">
+
+            <TextView
+                android:id="@+id/nombrePedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Día de lluvia"
+                android:fontFamily="@font/baloo_thambi_2"
+                android:textColor="@color/TituloLogin"
+                android:textStyle="bold"
+                android:textSize="20sp"
+                android:layout_marginTop="20dp"/>
+
+            <TextView
+                android:id="@+id/estadoPedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17,50"
+                android:fontFamily="@font/baloo_thambi_2"
+                android:textColor="@color/TituloLogin"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"/>
+
+            <TextView
+                android:id="@+id/fechaPedido"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="17,50"
+                android:fontFamily="@font/baloo_thambi_2"
+                android:textColor="@color/TituloLogin"
+                android:textSize="20sp"
+                android:layout_marginTop="10dp"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.cardview.widget.CardView>
