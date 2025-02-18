@@ -26,8 +26,15 @@
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical"
-            android:layout_marginTop="20dp"
             android:paddingStart="16dp">
+
+            <ImageView
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:layout_marginLeft="240dp"
+                android:layout_marginTop="10dp"
+                android:src="@drawable/eliminarproducto">
+            </ImageView>
 
             <!-- Nombre de la vela -->
             <TextView
@@ -80,12 +87,12 @@
                 <!-- Botón de eliminar -->
                 <ImageButton
                     android:id="@+id/btnEliminar"
-                    android:layout_width="32dp"
-                    android:layout_height="32dp"
+                    android:layout_width="48dp"
+                    android:layout_height="48dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
                     android:background="@android:color/transparent"
                     android:contentDescription="Eliminar vela"
-                    android:layout_marginLeft="25dp"
-                    android:layout_marginRight="25dp"
                     android:src="@drawable/multiplicarcesta" />
 
                 <!-- Precio de la vela -->
