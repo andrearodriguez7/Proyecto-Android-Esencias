@@ -40,6 +40,9 @@ class RegisterActivity : AppCompatActivity() {
             val email = findViewById<EditText>(R.id.registerEmail).text.toString()
             val pass = findViewById<EditText>(R.id.registerContrasenia).text.toString()
             val repPass = findViewById<EditText>(R.id.registerRepetirContrasenia).text.toString()
+            val direccion = findViewById<EditText>(R.id.registerDireccion).text.toString()
+            val foto = findViewById<EditText>(R.id.TuFoto).text.toString()
+            val telefono = findViewById<EditText>(R.id.registerTelefono).text.toString()
 
             if(pass != repPass){
                 Toast.makeText(this, "Las contraseñas no coinciden", Toast.LENGTH_SHORT).show()
@@ -47,7 +50,7 @@ class RegisterActivity : AppCompatActivity() {
             }
             val bbdd=BBDD(this);
 
-            when (bbdd.insertarUsuario(email, nombre, pass, null, null, "usuario", null)) {
+            when (bbdd.insertarUsuario(email, nombre, pass, direccion, foto, "usuario", telefono)) {
                 0 ->Toast.makeText(this, "Usuario registrado con éxito.", Toast.LENGTH_SHORT).show()
                 1 ->Toast.makeText(this, "Este correo ya está registrado.", Toast.LENGTH_SHORT).show()
                 2 -> Toast.makeText(this, "Este usuario ya está registrado.", Toast.LENGTH_SHORT).show()
