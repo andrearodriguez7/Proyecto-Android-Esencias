@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    android:orientation="vertical"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Título de la factura -->
+    <TextView
+        android:id="@+id/facturaTitulo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Factura"
+        android:textSize="24sp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center"/>
+
+    <!-- TextView para mostrar la factura -->
+    <TextView
+        android:id="@+id/facturaTextView"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="top"
+        android:textSize="18sp"
+        android:scrollbars="vertical"/>
+</LinearLayout>

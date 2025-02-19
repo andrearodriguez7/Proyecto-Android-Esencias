@@ -34,7 +34,11 @@ class CestaFragment : Fragment() {
         }
 
         pagarButton.setOnClickListener(){
+
+            val facturaFragment = FacturaFragment.newInstance(generarFacturaString())
+
             db.agregarPedido(Usuario.correo,listaProductos,listaProductos.sumOf{it.precio * it.cantidad})
+
             db.eliminarProductosCesta(Usuario.correo)
 
             listaProductos.clear()
@@ -42,6 +46,12 @@ class CestaFragment : Fragment() {
             adapter.notifyDataSetChanged()
 
             actualizarTotal(totalText)
+
+            val transaction = requireActivity().supportFragmentManager.beginTransaction()
+            transaction.replace(R.id.main, facturaFragment)
+            transaction.addToBackStack(null)
+            transaction.commit()
+
         }
 
         recyclerView = view.findViewById(R.id.recyclerCesta)
@@ -59,6 +69,19 @@ class CestaFragment : Fragment() {
         recyclerView.adapter = adapter
 
         return view
+    }
+
+    fun generarFacturaString(): String {
+        val totalFactura = listaProductos.sumOf { it.precio * it.cantidad }
+        val facturaBuilder = StringBuilder()
+
+        listaProductos.forEach { producto ->
+            facturaBuilder.append("${producto.nombre} - ${producto.cantidad} x ${producto.precio} = ${producto.cantidad * producto.precio}\n\n")
+        }
+
+        facturaBuilder.append("\nTotal: $totalFactura")
+
+        return facturaBuilder.toString()
     }
 
     private fun actualizarTotal(totalText:TextView){
