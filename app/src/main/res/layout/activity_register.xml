@@ -429,7 +429,7 @@
                             android:src="@drawable/fotouser" />
 
                         <EditText
-                            android:id="@+id/Tutelefono"
+                            android:id="@+id/TuFoto"
                             android:layout_width="0dp"
                             android:layout_height="48dp"
                             android:layout_weight="1"
