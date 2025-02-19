@@ -31,7 +31,7 @@ class PasswordActivity : AppCompatActivity() {
         val registro: Button = findViewById(R.id.passwordButton)
 
         volver.setOnClickListener {
-            supportFragmentManager.popBackStack()
+            finish()
         }
 
         registro.setOnClickListener {
@@ -44,16 +44,10 @@ class PasswordActivity : AppCompatActivity() {
             }
             val bbdd=BBDD(this);
 
-            bbdd.actualizarContrasena(this, Usuario.correo, pass)
-
+            if(bbdd.actualizarContrasena(this, Usuario.correo, pass)){
+                Toast.makeText(this,"Contraseña actualizada con éxito",Toast.LENGTH_LONG).show()
+            }
         }
-    }
-
-    private fun fragmentLoader(fragment: Fragment) {
-        supportFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container_esencias, PerfilFragment())
-            .addToBackStack(null)
-            .commit()
     }
 
 }

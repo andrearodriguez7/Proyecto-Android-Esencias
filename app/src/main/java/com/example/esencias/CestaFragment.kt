@@ -35,6 +35,8 @@ class CestaFragment : Fragment() {
 
         pagarButton.setOnClickListener(){
 
+            if(listaProductos.size==0) return@setOnClickListener
+
             val facturaFragment = FacturaFragment.newInstance(generarFacturaString())
 
             db.agregarPedido(Usuario.correo,listaProductos,listaProductos.sumOf{it.precio * it.cantidad})
@@ -76,10 +78,10 @@ class CestaFragment : Fragment() {
         val facturaBuilder = StringBuilder()
 
         listaProductos.forEach { producto ->
-            facturaBuilder.append("${producto.nombre} - ${producto.cantidad} x ${producto.precio} = ${producto.cantidad * producto.precio}\n\n")
+            facturaBuilder.append("\n${producto.nombre} - ${producto.cantidad} x ${producto.precio} = ${producto.cantidad * producto.precio}€\n")
         }
 
-        facturaBuilder.append("\nTotal: $totalFactura")
+        facturaBuilder.append("\nTotal: ${totalFactura}€")
 
         return facturaBuilder.toString()
     }

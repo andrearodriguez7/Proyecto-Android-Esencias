@@ -28,6 +28,7 @@
             android:paddingStart="16dp">
 
             <ImageView
+                android:id="@+id/btnEliminar"
                 android:layout_width="16dp"
                 android:layout_height="16dp"
                 android:layout_marginLeft="260dp"
@@ -82,17 +83,12 @@
                     android:contentDescription="Sumar cantidad"
                     android:src="@drawable/mascesta" />
 
-
-                <!-- Botón de eliminar -->
                 <ImageButton
-                    android:id="@+id/btnEliminar"
                     android:layout_width="48dp"
                     android:layout_height="48dp"
                     android:layout_marginLeft="10dp"
                     android:layout_marginRight="10dp"
-                    android:background="@android:color/transparent"
-                    android:contentDescription="Eliminar vela"
-                    android:src="@drawable/multiplicarcesta" />
+                    android:background="@android:color/transparent" />
 
                 <!-- Precio de la vela -->
                 <TextView

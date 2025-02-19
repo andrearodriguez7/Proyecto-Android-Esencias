@@ -7,6 +7,6 @@ data class Curso(
     val descripcion: String,
     val informacion: String,
     val imagen: String,
-    val plazasDisponibles: Int,
+    var plazasDisponibles: Int,
     val plazasMaximas: Int
 )

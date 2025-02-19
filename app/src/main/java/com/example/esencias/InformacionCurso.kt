@@ -52,6 +52,10 @@ class InformacionCurso : Fragment() {
             // Acción del botón de reserva
             buttonReserva.setOnClickListener {
                 if (productoCurso.plazasDisponibles > 0) {
+
+                    databaseHelper.agregarProductoACesta(Usuario.correo, productoCurso.idProducto)
+
+                    productoCurso.plazasDisponibles--
                     Toast.makeText(
                         requireContext(),
                         "Reserva realizada para el curso: ${productoCurso.nombre}",

@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -33,6 +34,13 @@ class PerfilFragment : Fragment() {
         val direccionUsuario: TextView = view.findViewById(R.id.direccion)
         val contenedorMisPedidos: LinearLayout = view.findViewById(R.id.ContenedorMisPedidos)
         val contenedorCambiarPass: LinearLayout = view.findViewById(R.id.ContenedorCambiarPass)
+        val cerrarSesionbutton: Button = view.findViewById(R.id.cerrarSesionbutton)
+
+        val db=BBDD(requireContext())
+
+        cerrarSesionbutton.setOnClickListener(){
+            db.cerrarSesion(requireContext(),requireActivity())
+        }
 
         contenedorCambiarPass.setOnClickListener(){
             val intent = Intent(requireContext(), PasswordActivity::class.java)

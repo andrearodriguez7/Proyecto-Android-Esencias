@@ -2,6 +2,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import com.example.esencias.R
@@ -25,18 +26,19 @@ class FacturaFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflar el layout del fragmento
-        val binding = inflater.inflate(R.layout.fragment_factura, container, false)
+        val view = inflater.inflate(R.layout.fragment_factura, container, false)
 
-        // Obtener el TextView del layout
-        facturaTextView = binding.findViewById(R.id.facturaTextView)
+        facturaTextView = view.findViewById(R.id.facturaTextView)
+        val flechaVolver: ImageView = view.findViewById(R.id.FlechaVolver)
 
-        // Obtener el string de la factura desde los argumentos
         val factura = arguments?.getString("factura") ?: "Factura vacía"
 
-        // Establecer el texto de la factura en el TextView
         facturaTextView.text = factura
 
-        return binding
+        flechaVolver.setOnClickListener {
+            requireActivity().supportFragmentManager.popBackStack()
+        }
+
+        return view
     }
 }

@@ -1,6 +1,7 @@
 package com.example.esencias
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,17 @@ class LoginActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
+
+        val user=cargarUsuarioDesdeSesion(this)
+
+        if (user=="usuario") {
+            val intent = Intent(this, AppActivity::class.java)
+            startActivity(intent)
+        }else if(user=="admin"){
+            val intent = Intent(this, ActivityEsencias::class.java)
+            intent.putExtra("fragmento","MenuAdministrador")
+            startActivity(intent)
+        }
 
         enableEdgeToEdge()
 
@@ -67,6 +79,7 @@ class LoginActivity : AppCompatActivity() {
 
             if(quienEs[0]){ // devuelve true si la contraseña es correcta
                 bd.establecerUsuario(nombre)
+                bd.guardarUsuarioEnSesion(this)
                 if(quienEs[1]){ //devuelve true si el user es administrador
 
                     val intent = Intent(this, ActivityEsencias::class.java)
@@ -84,5 +97,34 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this,"Usuario no encontrado",Toast.LENGTH_LONG).show()
         }
     }
+
+    fun saveUser(context: Context) {
+        val sharedPref = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putString("userId", Usuario.correo)
+            putString("userName", Usuario.nombre)
+            apply()
+        }
+    }
+
+    fun cargarUsuarioDesdeSesion(context: Context): String? {
+        val sharedPref = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val correo = sharedPref.getString("correo", null)
+
+        return if (correo != null) {
+            Usuario.correo = correo
+            Usuario.nombre = sharedPref.getString("nombre", null)
+            Usuario.pass = sharedPref.getString("pass", null)
+            Usuario.direccion = sharedPref.getString("direccion", null)
+            Usuario.fotoPerfil = sharedPref.getString("fotoPerfil", null)
+            Usuario.privilegios = sharedPref.getString("privilegios", null)
+            Usuario.tlfn = sharedPref.getString("tlfn", null)
+
+            Usuario.privilegios
+        } else {
+            null
+        }
+    }
+
 
 }

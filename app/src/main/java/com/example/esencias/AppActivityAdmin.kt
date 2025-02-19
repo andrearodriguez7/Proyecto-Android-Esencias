@@ -2,6 +2,7 @@ package com.example.esencias
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.ImageButton
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -63,4 +64,5 @@ class AppActivityAdmin : AppCompatActivity() {
         intent.putExtra("fragmento",frament)
         startActivity(intent)
     }
+
 }

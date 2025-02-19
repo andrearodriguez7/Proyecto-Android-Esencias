@@ -24,7 +24,7 @@ class AdaptadorCesta(
         val txtCantidad: TextView = view.findViewById(R.id.txtCantidad)
         val btnRestar: ImageButton = view.findViewById(R.id.btnRestar)
         val btnSumar: ImageButton = view.findViewById(R.id.btnSumar)
-        val btnEliminar: ImageButton = view.findViewById(R.id.btnEliminar)
+        val btnEliminar: ImageView = view.findViewById(R.id.btnEliminar)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CestaViewHolder {

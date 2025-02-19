@@ -4,25 +4,62 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp">
+    android:background="@color/amarillopollo">
 
-    <!-- Título de la factura -->
-    <TextView
-        android:id="@+id/facturaTitulo"
-        android:layout_width="wrap_content"
+    <LinearLayout
+        android:id="@+id/linearLayout6"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Factura"
-        android:textSize="24sp"
-        android:layout_marginBottom="20dp"
-        android:layout_gravity="center"/>
+        android:orientation="horizontal">
+
+        <ImageView
+            android:id="@+id/FlechaVolver"
+            android:layout_width="20dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/verdeadministrador"
+            android:padding="8dp"
+            android:paddingStart="10dp"
+            android:scaleType="fitCenter"
+            android:src="@drawable/flechavolver" />
+
+        <TextView
+            android:id="@+id/perfilTextView"
+            android:layout_width="300dp"
+            android:layout_height="80dp"
+            android:layout_weight="1"
+            android:background="@color/verdeadministrador"
+            android:fontFamily="@font/baloo_thambi_2"
+            android:gravity="center"
+            android:paddingEnd="30dp"
+            android:text="Factura"
+            android:textAlignment="center"
+            android:textSize="30sp" />
+
+    </LinearLayout>
 
     <!-- TextView para mostrar la factura -->
-    <TextView
-        android:id="@+id/facturaTextView"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:gravity="top"
-        android:textSize="18sp"
-        android:scrollbars="vertical"/>
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:backgroundTint="@color/verdepastel"
+                android:id="@+id/facturaTextView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:textColor="@color/black"
+                android:fontFamily="@font/baloo_thambi_2"
+                android:gravity="top"
+                android:scrollbars="vertical"
+                android:textSize="18sp" />
+        </LinearLayout>
+    </ScrollView>
+
 </LinearLayout>

@@ -1,6 +1,8 @@
 package com.example.esencias
+import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
@@ -578,13 +580,45 @@ Precio: 39,99€', 'Curso: Crea tu vela',
             Usuario.privilegios = cursor.getStringOrNull(cursor.getColumnIndexOrThrow("privilegios"))
             Usuario.tlfn = cursor.getStringOrNull(cursor.getColumnIndexOrThrow("tlfn"))
         }
-
         cursor.close()
         db.close()
     }
 
+    fun cerrarSesion(context: Context, activity: Activity) {
+        val sharedPref = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            clear()
+            apply()
+        }
+
+        Usuario.correo = ""
+        Usuario.nombre = null
+        Usuario.pass = null
+        Usuario.direccion = null
+        Usuario.fotoPerfil = null
+        Usuario.privilegios = null
+        Usuario.tlfn = null
+
+        val intent = Intent(context, LoginActivity::class.java)
+        context.startActivity(intent)
+        activity.finish()
+    }
 
 
+
+    fun guardarUsuarioEnSesion(context: Context) {
+        val sharedPref = context.getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        with(sharedPref.edit()) {
+            putString("correo", Usuario.correo)
+            putString("nombre", Usuario.nombre)
+            putString("pass", Usuario.pass)
+            putString("direccion", Usuario.direccion)
+            putString("fotoPerfil", Usuario.fotoPerfil)
+            putString("privilegios", Usuario.privilegios)
+            putString("tlfn", Usuario.tlfn)
+            apply()
+        }
+    }
     // Método para actualizar la contraseña del usuario
 
     fun actualizarContrasena(context: Context, correo: String, nuevaContrasena: String): Boolean {
