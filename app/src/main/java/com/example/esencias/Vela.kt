@@ -4,6 +4,7 @@ import android.os.Parcel
 import android.os.Parcelable
 
 data class Vela(
+    val idVela: Int,
     val nombre: String,
     val precio: String,
     val descripcion: String?,
@@ -13,16 +14,18 @@ data class Vela(
     val aromas: String?
 ): Parcelable{
     constructor(parcel: Parcel) : this(
-        parcel.readString()?: "",
+        parcel.readInt(),
         parcel.readString() ?: "",
         parcel.readString() ?: "",
+        parcel.readString(),
+        parcel.readString(),
         parcel.readString() ?: "",
-        parcel.readString() ?: "",
-        parcel.readString() ?: "",
-        parcel.readString() ?: ""
+        parcel.readString(),
+        parcel.readString()
     )
 
     override fun writeToParcel(parcel: Parcel, flags: Int) {
+        parcel.writeInt(idVela)
         parcel.writeString(nombre)
         parcel.writeString(precio)
         parcel.writeString(descripcion)

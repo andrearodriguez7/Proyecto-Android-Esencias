@@ -57,14 +57,17 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout"
-        app:layout_constraintVertical_bias="0.0"/>
+        app:layout_constraintVertical_bias="0.0" />
 
     <LinearLayout
-        android:id="@+id/Contenedorcursos"
+        android:id="@+id/ContenedorEditarPerfil"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
+        android:background="@color/verdepastel"
+        android:gravity="center"
+        android:padding="5dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
@@ -74,13 +77,9 @@
 
         <ImageView
             android:id="@+id/fotoUsuario"
-            android:layout_width="wrap_content"
-            android:layout_height="70dp"
-            android:layout_weight="1"
-            android:background="@color/verdepastel"
-            android:padding="27dp"
-            app:srcCompat="@drawable/entrar"
-            tools:srcCompat="@drawable/entrar" />
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            />
 
         <TextView
             android:id="@+id/Cursos"
@@ -89,6 +88,7 @@
             android:background="@color/verdepastel"
             android:fontFamily="@font/baloo_thambi_2"
             android:gravity="center"
+            android:paddingLeft="10dp"
             android:text="Editar perfil"
             android:textAlignment="textStart"
             android:textSize="24sp"

@@ -32,13 +32,11 @@ class AppActivityAdmin : AppCompatActivity() {
         // click listeners para viajar entre fragmentos
 
         botonAdmin.setOnClickListener{
-            val intent = Intent(this, ActivityEsencias::class.java)
-            intent.putExtra("fragmento","MenuAdministrador")
-            startActivity(intent)
+            activityEsencias("MenuAdministrador")
         }
 
         botonCesta.setOnClickListener{
-            cargarFragment(savedInstanceState, CestaFragment())
+            activityEsencias("CestaFragment")
         }
 
         botonInicio.setOnClickListener{
@@ -46,7 +44,7 @@ class AppActivityAdmin : AppCompatActivity() {
         }
 
         botonAjustes.setOnClickListener{
-            cargarFragment(savedInstanceState,SettingsFragment())
+            activityEsencias("SettingsFragment")
         }
 
     }
@@ -59,5 +57,10 @@ class AppActivityAdmin : AppCompatActivity() {
                 .replace(R.id.fragment_container, fragment)
                 .commit()
         }
+    }
+    private fun activityEsencias(frament:String) {
+        val intent = Intent(this, ActivityEsencias::class.java)
+        intent.putExtra("fragmento",frament)
+        startActivity(intent)
     }
 }

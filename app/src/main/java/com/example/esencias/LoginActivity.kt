@@ -54,6 +54,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun iniciarSesion(){
+
         var nombre:String?=findViewById<EditText>(R.id.loginEmail).text.toString()
         val pass=findViewById<EditText>(R.id.loginPass).text.toString()
         val bd=BBDD(this)
@@ -61,14 +62,21 @@ class LoginActivity : AppCompatActivity() {
         nombre=bd.encontrarUsuario(nombre)
 
         if(nombre!=null){
+
             val quienEs=bd.verificarUsuario(nombre,pass)
-            if(quienEs[0]){
-                if(quienEs[1]){
+
+            if(quienEs[0]){ // devuelve true si la contraseña es correcta
+                bd.establecerUsuario(nombre)
+                if(quienEs[1]){ //devuelve true si el user es administrador
+
                     val intent = Intent(this, ActivityEsencias::class.java)
+
                     intent.putExtra("fragmento","MenuAdministrador")
                     startActivity(intent)
-                }else
+                }else{
                     abrirActivity(AppActivity::class.java)
+                }
+
             }else{
                 Toast.makeText(this,"Contraseña incorrecta...",Toast.LENGTH_LONG).show()
             }
@@ -76,4 +84,5 @@ class LoginActivity : AppCompatActivity() {
             Toast.makeText(this,"Usuario no encontrado",Toast.LENGTH_LONG).show()
         }
     }
+
 }

@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 import android.util.Log
 import android.widget.Toast
+import androidx.core.database.getStringOrNull
 
 class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null, 1) {
 
@@ -65,6 +66,7 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
             CREATE TABLE Cesta_Producto (
                 idCesta INTEGER,
                 idProducto INTEGER,
+                cantidad INTEGER,
                 PRIMARY KEY (idCesta, idProducto),
                 FOREIGN KEY (idCesta) REFERENCES Cesta(idCesta),
                 FOREIGN KEY (idProducto) REFERENCES Producto(idProducto)
@@ -86,6 +88,7 @@ class BBDD(context: Context) : SQLiteOpenHelper(context, "esenciasBBDD.db", null
         CREATE TABLE Pedido_Producto (
             idPedido INTEGER NOT NULL,
             idProducto INTEGER NOT NULL,
+            cantidad INTEGER,
             PRIMARY KEY (idPedido, idProducto),
             FOREIGN KEY (idPedido) REFERENCES Pedido(idPedido),
             FOREIGN KEY (idProducto) REFERENCES Producto(idProducto)
@@ -169,7 +172,8 @@ Horas de encendido: 60/90 horas', 'Vela con fragancia de algodón', 'https://ext
 
         """
         val insertAdmin = """
-            INSERT INTO Usuario(correo,nombre,pass,privilegios) VALUES("","","","admin")
+            INSERT INTO Usuario (correo, nombre, pass, direccion, fotoPerfil, privilegios, tlfn)
+            VALUES ("admin@admin.com", "", "", "Calle 123", "https://external-content.duckduckgo.com/iu/?u=https%3A%2F%2Fimg.unocero.com%2F2018%2F08%2FAndroid-historique.jpg&f=1&nofb=1&ipt=fe7d3590f306c214cf695d66f776cb9fb34c0caaceddf20240a0b349bf154b8e&ipo=images", "admin", "623456789");
         """
 
         val insertCurso = """
@@ -281,12 +285,14 @@ Precio: 39,99€', 'Curso: Crea tu vela',
 
         return ret
     }
+
     /**
      * Dado un nombre y una contraseña, comprueba en BBDD
      * Devuelve:
      *  True: la contraseña es correcta
      *  False: la contraseña es incorrecta
      * */
+
     fun verificarUsuario(nombre: String, pass: String):Array<Boolean>{
 
         val db=this.readableDatabase
@@ -309,6 +315,7 @@ Precio: 39,99€', 'Curso: Crea tu vela',
 
         val query = """
             SELECT
+                Producto.idProducto AS id,
                 Producto.nombre AS nombre,
                 Producto.precio AS precio,
                 Producto.imagen AS imagen,
@@ -323,6 +330,7 @@ Precio: 39,99€', 'Curso: Crea tu vela',
         val cursor = db.rawQuery(query, null)
         if (cursor.moveToFirst()) {
             do {
+                val id = cursor.getInt(cursor.getColumnIndexOrThrow("id"))
                 val nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
                 val precio = cursor.getDouble(cursor.getColumnIndexOrThrow("precio")).toString()
                 val imagen = cursor.getString(cursor.getColumnIndexOrThrow("imagen"))
@@ -332,6 +340,7 @@ Precio: 39,99€', 'Curso: Crea tu vela',
                 val aromas = cursor.getString(cursor.getColumnIndexOrThrow("aromas"))
                 listaVelas.add(
                     Vela(
+                        idVela = id,
                         nombre = nombre,
                         precio = precio,
                         descripcion = descripcion,
@@ -555,6 +564,27 @@ Precio: 39,99€', 'Curso: Crea tu vela',
         }
     }
 
+    fun establecerUsuario(nombre: String) {
+        val db = this.readableDatabase
+        val query = "SELECT * FROM Usuario WHERE nombre = ? OR correo = ?"
+        val cursor = db.rawQuery(query, arrayOf(nombre))
+
+        if (cursor.moveToFirst()) {
+            Usuario.correo = cursor.getString(cursor.getColumnIndexOrThrow("correo"))
+            Usuario.nombre = cursor.getString(cursor.getColumnIndexOrThrow("nombre"))
+            Usuario.pass = cursor.getString(cursor.getColumnIndexOrThrow("pass"))
+            Usuario.direccion = cursor.getStringOrNull(cursor.getColumnIndexOrThrow("direccion"))
+            Usuario.fotoPerfil = cursor.getStringOrNull(cursor.getColumnIndexOrThrow("fotoPerfil"))
+            Usuario.privilegios = cursor.getStringOrNull(cursor.getColumnIndexOrThrow("privilegios"))
+            Usuario.tlfn = cursor.getStringOrNull(cursor.getColumnIndexOrThrow("tlfn"))
+        }
+
+        cursor.close()
+        db.close()
+    }
+
+
+
     // Método para actualizar la contraseña del usuario
 
     fun actualizarContrasena(context: Context, correo: String, nuevaContrasena: String): Boolean {
@@ -581,5 +611,170 @@ Precio: 39,99€', 'Curso: Crea tu vela',
 
         return resultado > 0
     }
+
+    fun agregarProductoACesta(correo: String, idProducto: Int) {
+        val db = this.writableDatabase
+        // Buscar si el usuario ya tiene una cesta
+        val cestaQuery = "SELECT idCesta FROM Cesta WHERE correo = ?"
+        val cursorCesta = db.rawQuery(cestaQuery, arrayOf(correo))
+
+        val idCesta: Int
+
+        if (cursorCesta.moveToFirst()) {
+            idCesta = cursorCesta.getInt(0)
+        } else {
+            db.execSQL("INSERT INTO Cesta (correo) VALUES (?)", arrayOf(correo))
+
+            val idQuery = "SELECT idCesta FROM Cesta WHERE correo = ?"
+            val newCursor = db.rawQuery(idQuery, arrayOf(correo))
+            if (newCursor.moveToFirst()) {
+                idCesta = newCursor.getInt(0)
+            } else {
+                newCursor.close()
+                cursorCesta.close()
+                println("Error al crear la cesta para el usuario $correo")
+                return
+            }
+            newCursor.close()
+        }
+        cursorCesta.close()
+
+        // Ahora que tenemos un idCesta válido, procedemos a agregar el producto
+        val query = "SELECT cantidad FROM Cesta_Producto WHERE idCesta = ? AND idProducto = ?"
+        val cursor = db.rawQuery(query, arrayOf(idCesta.toString(), idProducto.toString()))
+
+        if (cursor.moveToFirst()) {
+            val nuevaCantidad = cursor.getInt(0) + 1
+            db.execSQL("UPDATE Cesta_Producto SET cantidad = ? WHERE idCesta = ? AND idProducto = ?",
+                arrayOf(nuevaCantidad.toString(), idCesta.toString(), idProducto.toString()))
+        } else {
+            db.execSQL("INSERT INTO Cesta_Producto (idCesta, idProducto, cantidad) VALUES (?, ?, ?)",
+                arrayOf(idCesta.toString(), idProducto.toString(), "1"))
+        }
+        cursor.close()
+    }
+
+    fun actualizarCantidadProducto(idCesta: Int, idProducto: Int, nuevaCantidad: Int) {
+        val db = this.writableDatabase
+        val valores = ContentValues().apply {
+            put("cantidad", nuevaCantidad)
+        }
+        db.update("Cesta_Producto",valores,"idCesta = ? AND idProducto = ?",arrayOf(idCesta.toString(), idProducto.toString()))
+        db.close()
+    }
+
+    fun eliminarProducto(idCesta: Int, idProducto: Int) {
+        val db = this.writableDatabase
+        db.delete("Cesta_Producto", "idCesta = ? AND idProducto = ?", arrayOf(idCesta.toString(), idProducto.toString()))
+        db.close()
+    }
+
+    // Método para obtener los productos de la cesta desde la base de datos
+    fun obtenerProductosCesta(correoUsuario: String): MutableList<ProductosCompras> {
+        val lista = mutableListOf<ProductosCompras>()
+        val db = this.readableDatabase
+        val query = """
+        SELECT CP.idCesta, P.idProducto, P.nombre, P.precio, CP.cantidad, P.imagen
+        FROM Cesta_Producto CP
+        INNER JOIN Producto P ON CP.idProducto = P.idProducto
+        WHERE CP.idCesta = (SELECT idCesta FROM Cesta WHERE correo = ?)
+    """
+        val cursor = db.rawQuery(query, arrayOf(correoUsuario))
+
+        while (cursor.moveToNext()) {
+            val idCesta = cursor.getInt(0)
+            val idProducto = cursor.getInt(1)
+            val nombre = cursor.getString(2)
+            val precio = cursor.getDouble(3)
+            val cantidad = cursor.getInt(4)
+            val imagen = cursor.getString(5)
+
+            lista.add(ProductosCompras(idProducto,idCesta, nombre, precio, imagen, cantidad))
+        }
+        cursor.close()
+        db.close()
+        return lista
+    }
+
+    fun obtenerPedidos(correo: String): MutableList<Pedido> {
+        val lista = mutableListOf<Pedido>()
+        val db = this.readableDatabase
+
+        val query = """
+        SELECT p.idPedido, p.correo, p.estado, p.fecha, pr.nombre, pr.imagen
+        FROM Pedido p
+        JOIN Pedido_Producto pp ON p.idPedido = pp.idPedido
+        JOIN Producto pr ON pp.idProducto = pr.idProducto
+        WHERE p.correo = ?
+    """
+
+        val cursor = db.rawQuery(query, arrayOf(correo))
+
+        while (cursor.moveToNext()) {
+            val idPedido = cursor.getInt(0)
+            val correo = cursor.getString(1)
+            val estado = cursor.getString(2)
+            val fecha = cursor.getString(3)
+            val nombre = cursor.getString(4)
+            val imagen = cursor.getString(5)
+            lista.add(Pedido(idPedido, correo, estado, fecha, imagen, nombre))
+        }
+        cursor.close()
+        db.close()
+        return lista
+    }
+
+    fun agregarPedido(correo: String, productos: List<ProductosCompras>, importeTotal: Double) {
+        val db = this.writableDatabase
+        db.beginTransaction()
+        try {
+            // Insertar el pedido
+            val queryPedido = "INSERT INTO Pedido (correo, estado, fecha, importe) VALUES (?, 'En camino', datetime('now', '+2 days'), ?)"
+            val stmtPedido = db.compileStatement(queryPedido)
+            stmtPedido.bindString(1, correo)
+            stmtPedido.bindDouble(2, importeTotal)
+            stmtPedido.executeInsert()
+
+            // Obtener el id del último pedido insertado
+            val cursor = db.rawQuery("SELECT last_insert_rowid()", null)
+            var idPedido = -1
+            if (cursor.moveToFirst()) {
+                idPedido = cursor.getInt(0)
+            }
+            cursor.close()
+
+            // Insertar los productos del pedido
+            val queryProducto = "INSERT INTO Pedido_Producto (idPedido, idProducto, cantidad) VALUES (?, ?, ?)"
+            val stmtProducto = db.compileStatement(queryProducto)
+
+            for (producto in productos) {
+                stmtProducto.bindLong(1, idPedido.toLong())
+                stmtProducto.bindLong(2, producto.idProducto.toLong())
+                stmtProducto.bindLong(3, producto.cantidad.toLong())
+                stmtProducto.executeInsert()
+            }
+
+            db.setTransactionSuccessful()
+        } catch (e: Exception) {
+            e.printStackTrace()
+        } finally {
+            db.endTransaction()
+            db.close()
+        }
+    }
+
+    fun eliminarProductosCesta(correo:String) {
+        val db = this.writableDatabase
+        val cestaQuery = "SELECT idCesta FROM Cesta WHERE correo = ?"
+        val cursorCesta = db.rawQuery(cestaQuery, arrayOf(correo))
+
+        if (cursorCesta.moveToFirst()) {
+            val idCesta = cursorCesta.getInt(0)
+            db.delete("Cesta_Producto", "idCesta = ?", arrayOf(idCesta.toString()))
+        }
+        cursorCesta.close()
+        db.close()
+    }
+
 
 }

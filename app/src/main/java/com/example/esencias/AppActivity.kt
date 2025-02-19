@@ -1,8 +1,10 @@
 package com.example.esencias
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
 import android.widget.ImageButton
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -32,7 +34,7 @@ class AppActivity : AppCompatActivity() {
         // click listeners para viajar entre fragmentos
 
         botonCesta.setOnClickListener{
-            cargarFragment(savedInstanceState, CestaFragment())
+            activityEsencias("CestaFragment")
         }
 
         botonInicio.setOnClickListener{
@@ -40,9 +42,8 @@ class AppActivity : AppCompatActivity() {
         }
 
         botonAjustes.setOnClickListener{
-            cargarFragment(savedInstanceState,SettingsFragment())
+            activityEsencias("SettingsFragment")
         }
-
 
     }
 
@@ -52,7 +53,13 @@ class AppActivity : AppCompatActivity() {
         if (savedInstanceState == null) {
             supportFragmentManager.beginTransaction()
                 .replace(R.id.fragment_container, fragment)
+                .addToBackStack(null)
                 .commit()
         }
+    }
+    private fun activityEsencias(frament:String) {
+        val intent = Intent(this, ActivityEsencias::class.java)
+        intent.putExtra("fragmento",frament)
+        startActivity(intent)
     }
 }

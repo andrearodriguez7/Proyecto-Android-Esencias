@@ -1,6 +1,7 @@
 package com.example.esencias
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -24,7 +25,8 @@ class ActivityEsencias : AppCompatActivity() {
         val fragment= intent.getStringExtra("fragmento")
 
         if(fragment=="MenuAdministrador") cargarFragment(savedInstanceState, MenuAdministrador())
-
+        if(fragment=="SettingsFragment") cargarFragment(savedInstanceState,SettingsFragment())
+        if(fragment=="CestaFragment") cargarFragment(savedInstanceState,CestaFragment())
     }
 
     private fun cargarFragment(savedInstanceState: Bundle?, fragment: Fragment) {

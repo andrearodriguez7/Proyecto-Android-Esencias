@@ -9,6 +9,7 @@ import android.widget.Button
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.resource.bitmap.RoundedCorners
 import com.bumptech.glide.request.RequestOptions
@@ -32,7 +33,7 @@ class InformacionVela : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_informacion_vela, container, false)
-
+        val db=BBDD(requireContext())
         // Referencias a los elementos de la vista
 
         val imageVela: ImageView = view.findViewById(R.id.imageVela)
@@ -40,7 +41,10 @@ class InformacionVela : Fragment() {
         val descriptionVela: TextView = view.findViewById(R.id.descriptionVela)
         val infoVela: TextView = view.findViewById(R.id.infoVela)
         val botonVelaGrande: Button = view.findViewById(R.id.botonVelaGrande)
-        //val botonVelaChica: Button = view.findViewById(R.id.botonVelaChica)
+
+        botonVelaGrande.setOnClickListener(){
+            db.agregarProductoACesta(Usuario.correo, vela.idVela)
+        }
 
         Glide.with(imageVela.context)
             .load(vela.imagen)
@@ -53,7 +57,6 @@ class InformacionVela : Fragment() {
 
         infoVela.text=vela.informacion
 
-        // TODO Falta poner la info y funcionalidad de los botones del tamaño de la vela
 
         view.findViewById<ImageButton>(R.id.volverButton).setOnClickListener {
             // Regresar al fragmento anterior en la pila de retroceso
@@ -64,11 +67,4 @@ class InformacionVela : Fragment() {
 
 
     }
-
-    private fun fragmentLoader(fragment:Fragment) {
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.fragment_container, fragment)
-            .commit()
-    }
-
 }

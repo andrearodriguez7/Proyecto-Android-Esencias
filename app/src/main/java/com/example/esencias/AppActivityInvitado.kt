@@ -43,7 +43,6 @@ class AppActivityInvitado : AppCompatActivity() {
             Toast.makeText(this,"Esta opción no está disponible en modo invitado...",Toast.LENGTH_SHORT).show()
         }
 
-
     }
 
     // metodo para mostrar fragments
